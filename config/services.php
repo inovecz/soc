@@ -1,0 +1,57 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
+
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
+    ],
+
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
+    ],
+
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
+
+    'zabbix' => [
+        'host' => env('ZABBIX_HOST', 'localhost').'/'.env('ZABBIX_API_FILE', 'api_jsonrpc.php'),
+        'username' => env('ZABBIX_USERNAME', 'Admin'),
+        'password' => env('ZABBIX_PASSWORD', 'zabbix'),
+    ],
+
+    'graylog' => [
+        'host' => env('GRAYLOG_HOST', 'localhost').'/api/',
+        'username' => env('GRAYLOG_USERNAME', 'Admin'),
+        'password' => env('GRAYLOG_PASSWORD', 'graylog'),
+    ],
+
+    'openvas' => [
+        'host' => env('OPENVAS_HOST', 'localhost').'/api/',
+        'username' => env('OPENVAS_USERNAME', 'Admin'),
+        'password' => env('OPENVAS_PASSWORD', 'graylog'),
+    ],
+
+    'grafana' => [
+        'host' => env('GRAFANA_HOST', 'localhost').'/api/',
+        'username' => env('GRAFANA_USERNAME', 'Admin'),
+        'password' => env('GRAFANA_PASSWORD', 'grafana'),
+    ],
+];

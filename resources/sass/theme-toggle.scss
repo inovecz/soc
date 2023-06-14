@@ -1,0 +1,24 @@
+#theme-toggle {
+  .checkbox {
+    @apply opacity-0 absolute;
+  }
+
+  .checkbox-label {
+    @apply bg-neutral-200 dark:bg-neutral-800 h-6 rounded-full relative p-0 cursor-pointer flex space-x-1 justify-between items-center;
+    .fa-moon {
+      @apply text-amber-50 px-1;
+    }
+
+    .fa-sun {
+      @apply text-amber-400 px-1;
+    }
+
+    .ball {
+      @apply absolute bg-white w-5 h-5 -left-0.5 top-0.5 rounded-full transition-transform duration-200 ease-linear;
+    }
+  }
+
+  .checkbox:checked + .checkbox-label .ball {
+    @apply translate-x-6;
+  }
+}
