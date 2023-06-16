@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AlertController;
 use App\Http\Controllers\ZabbixController;
-use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GraylogController;
 use App\Http\Controllers\OpenVasController;
@@ -33,12 +33,12 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboards/{dashboardUid}', [DashboardController::class, 'index'])->whereUuid('dashboardUid')->name('dashboards.index');
     Route::get('/zabbix', [ZabbixController::class, 'index'])->name('zabbix.index');
-    Route::get('/graylog', [GraylogController::class, 'index'])->name('graylog.index');
+    Route::get('/logs-n-reports', [GraylogController::class, 'index'])->name('logs-n-reports.index');
     Route::get('/openvas', [OpenVasController::class, 'index'])->name('openvas.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
     Route::get('/hosts/{hostId}', [HostController::class, 'detail'])->name('hosts.detail');
-    Route::get('/people', [PeopleController::class, 'index'])->name('people.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/alerts', [AlertController::class, 'index'])->name('alerts.index');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

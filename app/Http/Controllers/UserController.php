@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Zabbix;
 
-class PeopleController extends Controller
+class UserController extends Controller
 {
     public function __construct(protected Zabbix $zabbix = new Zabbix()) { }
 

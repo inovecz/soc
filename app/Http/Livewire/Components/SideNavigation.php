@@ -57,7 +57,7 @@ class SideNavigation extends Component
                 'label' => __('Dashboards'),
                 'icon' => 'mdi-view-grid',
                 'route' => null,
-                'active' => Str::of(request()?->route()?->getName())->startsWith('dashboards'),
+                'active' => request()?->pageIs('dashboards/*'),
                 'submenu' => [
                     ...$dashboardsSubmenu,
                     ['label' => __('Manage'), 'route' => 'dashboards.manage', 'active' => Str::of(request()?->route()?->getName())->startsWith('dashboards.manage')],
@@ -69,15 +69,15 @@ class SideNavigation extends Component
                 'label' => __('Alerts'),
                 'icon' => 'mdi-bell',
                 'route' => 'alerts.index',
-                'active' => request()?->route()?->getName() === 'alerts.index',
+                'active' => request()?->pageIs('alerts'),
             ];
         }
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.threat_analysis_centre', 1) === 1) {
             $this->menuItems[] = [
                 'label' => __('Threat Analysis Centre'),
                 'icon' => 'mdi-bug',
-                'route' => '',
-                'active' => Str::of(request()?->route()?->getName())->startsWith('openvas'),
+                'route' => 'threat-analysis-centre.index',
+                'active' => request()?->pageIs('threat-analysis-centre/*'),
                 'submenu' => [
                     ['label' => __('OpenVAS'), 'route' => 'openvas.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('openvas.index')],
                 ],
@@ -87,8 +87,8 @@ class SideNavigation extends Component
             $this->menuItems[] = [
                 'label' => __('Logs & Reports'),
                 'icon' => 'mdi-poll',
-                'route' => 'graylog.index',
-                'active' => request()?->route()?->getName() === 'graylog.index',
+                'route' => 'logs-n-reports.index',
+                'active' => request()?->pageIs('logs-n-reports'),
             ];
         }
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.people', 1) === 1) {
@@ -96,7 +96,7 @@ class SideNavigation extends Component
                 'label' => __('People'),
                 'icon' => 'mdi-account-group',
                 'route' => 'users.index',
-                'active' => request()?->route()?->getName() === 'users.index',
+                'active' => request()?->pageIs('users'),
             ];
         }
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.devices', 1) === 1) {
@@ -104,21 +104,21 @@ class SideNavigation extends Component
                 'label' => __('Devices'),
                 'icon' => 'mdi-cellphone-link',
                 'route' => 'hosts.index',
-                'active' => request()?->route()?->getName() === 'hosts.index',
+                'active' => request()?->pageIs('hosts'),
             ];
         }
         $this->menuItems[] = [
             'label' => __('Global Setting'),
             'icon' => 'mdi-cogs',
             'route' => 'settings.index',
-            'active' => request()?->route()?->getName() === 'settings.index',
+            'active' => request()?->pageIs('settings'),
         ];
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.account_health_check', 1) === 1) {
             $this->menuItems[] = [
                 'label' => __('Account Health Check'),
                 'icon' => 'mdi-shield-plus',
                 'route' => '',
-                'active' => request()?->route()?->getName() === '',
+                'active' => request()?->pageIs('account-health-check'),
             ];
         }
         $this->menuItems[] = [];
@@ -128,7 +128,7 @@ class SideNavigation extends Component
                 'icon' => 'mdi-shield-crown',
                 'role_id' => 3,
                 'route' => '',
-                'active' => request()?->route()?->getName() === '',
+                'active' => request()?->pageIs('admin-button'),
                 'submenu' => [],
             ];
         }
@@ -137,7 +137,7 @@ class SideNavigation extends Component
                 'label' => __('Actions'),
                 'icon' => 'mdi-toggle-switch',
                 'route' => '',
-                'active' => request()?->route()?->getName() === '',
+                'active' => request()?->pageIs('actions'),
                 'submenu' => [],
             ];
         }

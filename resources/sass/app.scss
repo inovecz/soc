@@ -146,10 +146,8 @@ h2 {
   }
 }
 
-
 input:checked ~ .dot {
-  transform: translateX(100%);
-  background-color: #48bb78;
+  @apply translate-x-6 bg-teal-500 group-hover:bg-teal-400 group-hover:translate-x-5;
 }
 
 @tailwind utilities;

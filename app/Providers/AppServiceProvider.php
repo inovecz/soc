@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Http\Request::macro('pageIs', function ($pattern) {
+            return $this->is('livewire/message/*')
+                ? Str::is(url($pattern), Str::before($this->header('referer'), '?'))
+                : $this->is($pattern);
+        });
     }
 }
