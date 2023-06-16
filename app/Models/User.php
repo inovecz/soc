@@ -3,43 +3,38 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    // <editor-fold desc="Region: STATE DEFINITION">
+    protected $guarded = ['id', 'created_at', 'updated_at',];
+    protected $hidden = ['password',];
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    // </editor-fold desc="Region: STATE DEFINITION">
+
+    // <editor-fold desc="Region: RELATIONS">
+    // </editor-fold desc="Region: RELATIONS">
+
+    // <editor-fold desc="Region: GETTERS">
+    public function getRoleId(): int
+    {
+        return $this->role_id;
+    }
+    // </editor-fold desc="Region: GETTERS">
+
+    // <editor-fold desc="Region: FUNCTIONS">
+    public function hasRole(int $roleId): bool
+    {
+        return $this->getRoleId() === $roleId;
+    }
+    // </editor-fold desc="Region: FUNCTIONS">
+
 }

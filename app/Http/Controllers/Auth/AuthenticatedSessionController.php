@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use App\Libraries\Zabbix;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,9 +24,41 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        /*if (User::where('username', $username)->exists()) {
+            Auth::attempt(['username' => $username, 'password' => $password]);
+        }
+
+        if (Auth::check()) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }*/
+
+        $zabbix = new Zabbix();
+        $response = $zabbix->loginUser($username, $password);
+
+        if (array_key_exists('error', $response)) {
+            return back()->withErrors([
+                'zabbix' => $response['error']['data'],
+            ]);
+        }
+
+        $result = $response['result'];
+        User::updateOrCreate([
+            'zabbix_id' => $result['userid'],
+        ], [
+            'username' => $result['username'],
+            'name' => $result['name'],
+            'surname' => $result['surname'],
+            'password' => $password,
+            'lang' => $result['lang'],
+            'role_id' => (int) $result['roleid'],
+        ]);
+
+        Auth::login(User::where('zabbix_id', $result['userid'])->first());
 
         $request->session()->regenerate();
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HostController;
 use App\Http\Controllers\ZabbixController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GraylogController;
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/graylog', [GraylogController::class, 'index'])->name('graylog.index');
     Route::get('/openvas', [OpenVasController::class, 'index'])->name('openvas.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
+    Route::get('/hosts/{hostId}', [HostController::class, 'detail'])->name('hosts.detail');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

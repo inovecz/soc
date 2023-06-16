@@ -15,17 +15,19 @@
   <!--<editor-fold desc="PANELS">-->
   <h2>{{ __('Panels') }}</h2>
   <div class="grid grid-cols-2 gap-4 mb-6 mt-2">
-    @foreach($panels as $panel)
-      <div class="flex flex-col px-4 py-2 min-h-20 text-6xl rounded-lg bg-zinc-200 dark:bg-zinc-800">
-        <div class="text-lg">{{ $panel['title'] }}</div>
-        <div class="grid grid-cols-2 text-sm">
-          <div>Datasource - type:</div>
-          <div>{{ $panel['datasource']['type'] }}</div>
-          <div>Datasource - uid:</div>
-          <div>{{ $panel['datasource']['uid'] }}</div>
+    @if(!empty($panels))
+      @foreach($panels as $panel)
+        <div class="flex flex-col px-4 py-2 min-h-20 text-6xl rounded-lg bg-zinc-200 dark:bg-zinc-800">
+          <div class="text-lg">{{ $panel['title'] }}</div>
+          <div class="grid grid-cols-2 text-sm">
+            <div>Datasource - type:</div>
+            <div>{{ $panel['datasource']['type'] }}</div>
+            <div>Datasource - uid:</div>
+            <div>{{ $panel['datasource']['uid'] }}</div>
+          </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
+    @endif
   </div>
   <!--</editor-fold desc="PANELS">-->
 
@@ -63,42 +65,39 @@
   <!--</editor-fold desc="CHARTS">-->
 
   <!--<editor-fold desc="TABLE">-->
-  <div class="bg-zinc-200 dark:bg-zinc-800 overflow-hidden shadow-sm sm:rounded-lg px-4 py-2 mb-6">
-    <div class="flex justify-between items-center mb-4 font-bold">
-      <div class="text-xs">Current problems</div>
-      <div class="text-md"><span class="mdi mdi-dots-horizontal text-sky-400"></span></div>
-    </div>
-    <table class="w-full text-left">
-      <thead class="bg-zinc-300 dark:bg-zinc-700 text-xs">
+
+  <x-table label="Current problems">
+    @slot('head')
+      <th>{{ __('Time') }}</th>
+      <th class="w-64">{{ __('Host') }}</th>
+      <th class="w-64">{{ __('Problem - Severity') }}</th>
+      <th>{{ __('Duration') }}</th>
+      <th>{{ __('Update') }}</th>
+      <th>{{ __('Tags') }}</th>
+    @endslot
+
+    @slot('body')
+      @for($i = 0; $i < 5; $i++)
         <tr>
-          <th class="px-2 py-2 rounded-l">{{ __('Time') }}</th>
-          <th class="px-2 py-2 w-64">{{ __('Host') }}</th>
-          <th class="px-2 py-2 w-64">{{ __('Problem - Severity') }}</th>
-          <th class="px-2 py-2">{{ __('Duration') }}</th>
-          <th class="px-2 py-2">{{ __('Update') }}</th>
-          <th class="px-2 py-2 rounded-r">{{ __('Tags') }}</th>
+          <td>{{ fake()->time() }}</td>
+          <td class="underline">{{ fake()->url() }}</td>
+          <td>
+            <x-tag type="{{ $i % 2 === 0 ? 'danger' : 'info' }}">Cert: Fingerprint has changed (new version: {{ fake()->uuid() }})</x-tag>
+          </td>
+          <td class="underline">{{ fake()->time('i\m\ s\s') }}</td>
+          <td>
+            <x-tag type="info">Update</x-tag>
+          </td>
+          <td>
+            @for($j = 0; $j < random_int(0, 5); $j++)
+              <x-tag>{{ fake()->word() }}</x-tag>
+            @endfor
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        @for($i = 0; $i < 5; $i++)
-          <tr class="text-xxs border-b border-neutral-700 dark:border-neutral-300">
-            <td class="px-2 py-1">{{ fake()->time() }}</td>
-            <td class="px-2 py-1 underline">{{ fake()->url() }}</td>
-            <td class="px-2 py-1">
-              <div class="{{ $i % 2 === 0 ? 'bg-sky-400' : 'bg-orange-600' }} inline-block rounded p-1 my-1">Cert: Fingerprint has changed (new version: {{ fake()->uuid() }})</div>
-            </td>
-            <td class="px-2 py-1 underline">{{ fake()->time('i\m\ s\s') }}</td>
-            <td class="px-2 py-1"><span class="bg-sky-400 font-medium px-1.5 py-0.5 rounded">Update</span></td>
-            <td class="px-2 py-1">
-              @for($j = 0; $j < random_int(0, 5); $j++)
-                <span class="bg-neutral-300 dark:bg-neutral-700 font-medium px-1.5 py-0.5 rounded">{{ fake()->word() }}</span>
-              @endfor
-            </td>
-          </tr>
-        @endfor
-      </tbody>
-    </table>
-  </div>
+      @endfor
+    @endslot
+  </x-table>
+
   <!--</editor-fold desc="TABLE">-->
 
   <script>

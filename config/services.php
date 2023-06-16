@@ -43,7 +43,7 @@ return [
         'password' => env('GRAYLOG_PASSWORD', 'graylog'),
     ],
 
-    'openvas' => [
+    'open_vas' => [
         'host' => env('OPENVAS_HOST', 'localhost').'/api/',
         'username' => env('OPENVAS_USERNAME', 'Admin'),
         'password' => env('OPENVAS_PASSWORD', 'graylog'),

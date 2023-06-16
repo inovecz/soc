@@ -30,7 +30,7 @@ class SideNavigation extends Component
             [],
             [
                 'label' => __('Dashboards'),
-                'icon' => 'mdi-view-dashboard',
+                'icon' => 'mdi-view-grid',
                 'route' => null,
                 'active' => Str::of(request()?->route()?->getName())->startsWith('dashboards'),
                 'submenu' => [
@@ -63,8 +63,8 @@ class SideNavigation extends Component
             ], [
                 'label' => __('Devices'),
                 'icon' => 'mdi-cellphone-link',
-                'route' => '',
-                'active' => request()?->route()?->getName() === '',
+                'route' => 'hosts.index',
+                'active' => request()?->route()?->getName() === 'hosts.index',
             ], [
                 'label' => __('Global Setting'),
                 'icon' => 'mdi-cogs',
@@ -78,25 +78,14 @@ class SideNavigation extends Component
             ],
             [],
             [
-                'label' => __('Endpoint'),
-                'icon' => 'mdi-transit-connection-variant',
+                'label' => __('Admin button'),
+                'icon' => 'mdi-shield-crown',
+                'role_id' => 3,
                 'route' => '',
                 'active' => request()?->route()?->getName() === '',
                 'submenu' => [],
             ], [
-                'label' => __('Server'),
-                'icon' => 'mdi-server-network',
-                'route' => 'zabbix.index',
-                'active' => request()?->route()?->getName() === 'zabbix.index',
-                'submenu' => [],
-            ], [
-                'label' => __('Firewall Management'),
-                'icon' => 'mdi-folder-account',
-                'route' => '',
-                'active' => request()?->route()?->getName() === '',
-                'submenu' => [],
-            ], [
-                'label' => __('Switches'),
+                'label' => __('Actions'),
                 'icon' => 'mdi-toggle-switch',
                 'route' => '',
                 'active' => request()?->route()?->getName() === '',

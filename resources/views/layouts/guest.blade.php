@@ -19,7 +19,7 @@
     <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
       <div>
         <a href="/">
-          <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
+          <x-application-logo/>
         </a>
       </div>
 

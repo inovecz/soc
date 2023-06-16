@@ -8,6 +8,7 @@
     "devDependencies": {
         "@alpinejs/persist": "^3.12.2",
         "@fortawesome/fontawesome-free": "^6.4.0",
+        "@mdi/font": "^7.2.96",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
@@ -26,8 +27,5 @@
         "tippy.js": "^6.3.7",
         "toastr": "^2.1.4",
         "vite": "^4.0.0"
-    },
-    "dependencies": {
-        "@mdi/font": "^7.2.96"
     }
 }

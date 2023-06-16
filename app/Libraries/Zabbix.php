@@ -26,7 +26,7 @@ class Zabbix extends ServiceAbstract
         return $response['result'] ?? null;
     }
 
-    public function call(string $route = '', array $getParams = [], HttpMethod $method = HttpMethod::POST, array $postData = []): array
+    public function call(string $route = '', array $getParams = [], HttpMethod $method = HttpMethod::POST, array $postData = [], bool $noAuthorization = false): array
     {
         if (!array_key_exists('jsonrpc', $postData)) {
             $postData['jsonrpc'] = '2.0';
@@ -37,7 +37,7 @@ class Zabbix extends ServiceAbstract
 
         $http = Http::connectTimeout($this->requestTimeout)
             ->withHeaders(['Content-Type' => 'application/json', 'Accept' => 'application/json']);
-        if (isset($this->accessToken)) {
+        if (isset($this->accessToken) && !$noAuthorization) {
             $http->withToken($this->accessToken);
         }
 
@@ -46,6 +46,15 @@ class Zabbix extends ServiceAbstract
     }
 
     // </editor-fold desc="Region: ABSTRACT METHODS">
+
+    public function loginUser(string $username, string $password): array
+    {
+        $data = [
+            'method' => 'user.login',
+            'params' => ['username' => $username, 'password' => $password, 'userData' => true],
+        ];
+        return $this->call(postData: $data, noAuthorization: true);
+    }
 
     public function getApiInfo(): array
     {
@@ -61,8 +70,40 @@ class Zabbix extends ServiceAbstract
         $data = [
             'method' => 'host.get',
             'params' => [
-                'output' => ['host'],
-                'selectInventory' => ['os'],
+                'selectInventory' => ['os_short', 'hardware'],
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+
+    public function getHost(string $hostId)
+    {
+        $data = [
+            'method' => 'host.get',
+            'params' => [
+                'selectInventory' => ['os', 'hardware'],
+                'hostids' => [$hostId],
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+
+    public function getProblemsCount(string $hostId): array
+    {
+        $problems = collect($this->getProblems($hostId));
+        return $problems->groupBy('severity')
+            ->map(fn($items) => $items->count())
+            ->toArray();
+    }
+
+    public function getProblems(string $hostId)
+    {
+        $data = [
+            'method' => 'problem.get',
+            'params' => [
+                'output' => 'extend',
+                'selectTags' => 'extend',
+                'hostids' => [$hostId],
             ],
         ];
         return $this->call(postData: $data)['result'];
