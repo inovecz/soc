@@ -19,7 +19,7 @@ class HostController extends Controller
 
     public function detail(string $hostId)
     {
-        $host = $this->zabbix->getHost($hostId);
+        $host = $this->zabbix->getHost($hostId)[0];
         $problems = $this->zabbix->getProblems($hostId);
         return view('pages.hosts.detail', compact('host', 'problems'));
     }

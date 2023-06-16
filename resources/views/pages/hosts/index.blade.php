@@ -22,11 +22,7 @@
         <tr>
           <td>
             <div class="flex gap-2 items-center">
-              @if($host['active_available'] === '1')
-                <div class="w-4 h-4 rounded-full bg-green-500"></div>
-              @else
-                <div class="w-4 h-4 rounded-full bg-red-500"></div>
-              @endif
+              <x-led type="{{ $host['active_available'] === '1' ? 'success' : 'danger' }}"></x-led>
               <div>{{ $host['hostid'] }}</div>
             </div>
           </td>

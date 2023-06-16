@@ -7,13 +7,13 @@
     @slot('head')
       <th class="w-8">ID</th>
       <th class="w-32">{{ __('Username') }}</th>
-      <th class="w-32">{{ __('Name') }}</th>
+      <th class="w-24">{{ __('Name') }}</th>
       <th class="w-32">{{ __('Surname') }}</th>
-      <th class="w-32">{{ __('Autologin') }}</th>
-      <th class="w-32">{{ __('Autologout') }}</th>
-      <th class="w-32">{{ __('Lang') }}</th>
-      <th class="w-32">{{ __('Timezone') }}</th>
-      <th class="w-32">{{ __('Role') }}</th>
+      <th class="w-24">{{ __('Autologin') }}</th>
+      <th class="w-24">{{ __('Autologout') }}</th>
+      <th class="w-24">{{ __('Lang') }}</th>
+      <th class="w-24">{{ __('Timezone') }}</th>
+      <th class="w-24">{{ __('Role') }}</th>
       <th class="w-32">{{ __('SOC') }}</th>
     @endslot
 
@@ -24,12 +24,28 @@
           <td>{{ $user['username'] }}</td>
           <td>{{ $user['name'] }}</td>
           <td>{{ $user['surname'] }}</td>
-          <td>{{ $user['autologin'] }}</td>
-          <td>{{ $user['autologout'] }}</td>
-          <td>{{ $user['lang'] }}</td>
-          <td>{{ $user['timezone'] }}</td>
-          <td>{{ $user['roleid'] }}</td>
-          <td>{{ \App\Models\User::where('zabbix_id', $user['userid'])->exists() ? 'Ano' : 'Ne'}}</td>
+          <td>
+            <x-led type="{{ $user['autologin'] === '1' ? 'success' : 'danger' }}"></x-led>
+          </td>
+          <td>
+            @if($user['autologout'] === '0')
+              <x-led type="danger"></x-led>
+            @else
+              {{ $user['autologout'] }}
+            @endif
+          </td>
+          <td>{{ $user['lang'] === 'default' ? $settings['default_lang'] : $user['lang'] }}</td>
+          <td>{{ $user['timezone'] === 'default' ? $settings['default_timezone'] : $user['timezone'] }}</td>
+          <td>
+            @if(isset($user['role']['name']))
+              {{ $user['role']['name'] }}
+            @else
+              <x-led type="danger"></x-led>
+            @endif
+          </td>
+          <td>
+            <x-led type="{{ \App\Models\User::where('zabbix_id', $user['userid'])->exists() ? 'success' : 'danger' }}"></x-led>
+          </td>
         </tr>
       @endforeach
     @endslot

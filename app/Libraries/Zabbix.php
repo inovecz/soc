@@ -15,7 +15,6 @@ class Zabbix extends ServiceAbstract
      */
 
     // <editor-fold desc="Region: ABSTRACT METHODS">
-
     public function getAccessToken(): ?string
     {
         $data = [
@@ -41,20 +40,11 @@ class Zabbix extends ServiceAbstract
             $http->withToken($this->accessToken);
         }
 
-        $response = $http->post(config('services.zabbix.host'), $postData)->body();
+        $response = $http->post($this->getHostUrl().'/api_jsonrpc.php', $postData)->body();
         return $response ? json_decode($response, true) : [];
     }
 
     // </editor-fold desc="Region: ABSTRACT METHODS">
-
-    public function loginUser(string $username, string $password): array
-    {
-        $data = [
-            'method' => 'user.login',
-            'params' => ['username' => $username, 'password' => $password, 'userData' => true],
-        ];
-        return $this->call(postData: $data, noAuthorization: true);
-    }
 
     public function getApiInfo(): array
     {
@@ -93,7 +83,9 @@ class Zabbix extends ServiceAbstract
         $data = [
             'method' => 'host.get',
             'params' => [
+                'output' => 'extend',
                 'selectInventory' => ['os', 'hardware'],
+                'selectInterfaces' => 'extend',
                 'hostids' => [$hostId],
             ],
         ];
@@ -124,7 +116,16 @@ class Zabbix extends ServiceAbstract
     }
     // </editor-fold desc="Region: PROBLEMS">
 
-    // <editor-fold desc="Region: PEOPLE">
+    // <editor-fold desc="Region: USERS">
+    public function loginUser(string $username, string $password): array
+    {
+        $data = [
+            'method' => 'user.login',
+            'params' => ['username' => $username, 'password' => $password, 'userData' => true],
+        ];
+        return $this->call(postData: $data, noAuthorization: true);
+    }
+
     public function getUsers(): array
     {
         $data = [
@@ -135,6 +136,30 @@ class Zabbix extends ServiceAbstract
         ];
         return $this->call(postData: $data)['result'];
     }
+
+    public function getRoles()
+    {
+        $data = [
+            'method' => 'role.get',
+            'params' => [
+                'output' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
     // </editor-fold desc="Region: PEOPLE">
+
+    // <editor-fold desc="Region: SETTINGS">
+    public function getSettings()
+    {
+        $data = [
+            'method' => 'settings.get',
+            'params' => [
+                'output' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+    // </editor-fold desc="Region: SETTINGS">
 
 }

@@ -11,6 +11,15 @@ class PeopleController extends Controller
     public function index()
     {
         $users = $this->zabbix->getUsers();
-        return view('pages.people.index', compact('users'));
+        $roles = $this->zabbix->getRoles();
+        $rolesMap = [];
+        foreach ($roles as $role) {
+            $rolesMap[$role['roleid']] = $role;
+        }
+        foreach ($users as $index => $user) {
+            $users[$index]['role'] = $rolesMap[$user['roleid']] ?? null;
+        }
+        $settings = $this->zabbix->getSettings();
+        return view('pages.people.index', compact('users', 'settings'));
     }
 }

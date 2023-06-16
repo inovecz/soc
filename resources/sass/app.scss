@@ -104,7 +104,7 @@ h2 {
 }
 
 .datatable {
-  @apply w-full text-left table-auto;
+  @apply w-full text-left table-fixed;
 
   thead {
     @apply bg-zinc-300 dark:bg-zinc-700 text-xs;

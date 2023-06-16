@@ -32,7 +32,7 @@ return [
     ],
 
     'zabbix' => [
-        'host' => env('ZABBIX_HOST', 'localhost').'/'.env('ZABBIX_API_FILE', 'api_jsonrpc.php'),
+        'host' => env('ZABBIX_HOST', 'localhost'),
         'username' => env('ZABBIX_USERNAME', 'Admin'),
         'password' => env('ZABBIX_PASSWORD', 'zabbix'),
     ],

@@ -39,4 +39,9 @@ abstract class ServiceAbstract implements ServiceInterface
             abort(503, 'Service '.$this->serviceName.' is not available.');
         }
     }
+
+    public function getHostUrl(): string
+    {
+        return $this->host;
+    }
 }
