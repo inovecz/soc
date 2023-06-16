@@ -55,11 +55,17 @@
                    x-transition:leave-end="transform opacity-0 scale-95"
                    class="bg-neutral-50 dark:bg-neutral-950 w-full pl-12">
                 @foreach($menuItem['submenu'] as $submenu)
-                  <button class="w-full pl-4 py-2 text-xs flex items-center justify-start text-left border-l-8 cursor-pointer {{ $submenu['active'] ? 'border-sky-400' : 'border-transparent bg-neutral-100 dark:bg-neutral-900' }}"
-                          wire:click="routeTo('{{ $submenu['route'] }}', {{ isset($submenu['params']) ? json_encode($submenu['params']) : null }})"
-                          x-init="!open ? open = {{ json_encode($submenu['active']) }} && !open : false">
-                    {{ $submenu['label'] }}
-                  </button>
+                  @if(isset($submenu['route']))
+                    <button class="w-full pl-4 py-2 text-xs flex items-center justify-start text-left border-l-8 cursor-pointer {{ $submenu['active'] ? 'border-sky-400' : 'border-transparent bg-neutral-100 dark:bg-neutral-900' }}"
+                            wire:click="routeTo('{{ $submenu['route'] }}', {{ isset($submenu['params']) ? json_encode($submenu['params']) : null }})"
+                            x-init="!open ? open = {{ json_encode($submenu['active']) }} && !open : false">
+                      {{ $submenu['label'] }}
+                    </button>
+                  @else
+                    <button class="w-full pl-4 py-2 text-rose-500 text-xs flex items-center justify-start text-left border-l-8 cursor-default border-transparent bg-neutral-100 dark:bg-neutral-900">
+                      {{ $submenu['label'] }}
+                    </button>
+                  @endif
                 @endforeach
               </div>
             @endif

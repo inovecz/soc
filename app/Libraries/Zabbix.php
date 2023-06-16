@@ -149,6 +149,19 @@ class Zabbix extends ServiceAbstract
     }
     // </editor-fold desc="Region: PEOPLE">
 
+    // <editor-fold desc="Region: ALERTS">
+    public function getAlerts()
+    {
+        $data = [
+            'method' => 'alert.get',
+            'params' => [
+                'output' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+    // </editor-fold desc="Region: ALERTS">
+
     // <editor-fold desc="Region: SETTINGS">
     public function getSettings()
     {
