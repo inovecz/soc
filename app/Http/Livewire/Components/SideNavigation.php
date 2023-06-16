@@ -58,8 +58,8 @@ class SideNavigation extends Component
             ], [
                 'label' => __('People'),
                 'icon' => 'mdi-account-multiple',
-                'route' => '',
-                'active' => request()?->route()?->getName() === '',
+                'route' => 'people.index',
+                'active' => request()?->route()?->getName() === 'people.index',
             ], [
                 'label' => __('Devices'),
                 'icon' => 'mdi-cellphone-link',

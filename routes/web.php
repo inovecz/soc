@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\ZabbixController;
+use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GraylogController;
 use App\Http\Controllers\OpenVasController;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
     Route::get('/hosts/{hostId}', [HostController::class, 'detail'])->name('hosts.detail');
+    Route::get('/people', [PeopleController::class, 'index'])->name('people.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -65,12 +65,24 @@ class Zabbix extends ServiceAbstract
         return $this->call(postData: $data);
     }
 
+    // <editor-fold desc="Region: HOSTS">
     public function getHosts(): array
     {
         $data = [
             'method' => 'host.get',
             'params' => [
                 'selectInventory' => ['os_short', 'hardware'],
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+
+    public function getHostsData(array $hostNames): array
+    {
+        $data = [
+            'method' => 'host.get',
+            'params' => [
+                'filter' => $hostNames,
             ],
         ];
         return $this->call(postData: $data)['result'];
@@ -87,7 +99,9 @@ class Zabbix extends ServiceAbstract
         ];
         return $this->call(postData: $data)['result'];
     }
+    // </editor-fold desc="Region: HOSTS">
 
+    // <editor-fold desc="Region: PROBLEMS">
     public function getProblemsCount(string $hostId): array
     {
         $problems = collect($this->getProblems($hostId));
@@ -108,16 +122,19 @@ class Zabbix extends ServiceAbstract
         ];
         return $this->call(postData: $data)['result'];
     }
+    // </editor-fold desc="Region: PROBLEMS">
 
-    public function getHostsData(array $hostNames): array
+    // <editor-fold desc="Region: PEOPLE">
+    public function getUsers(): array
     {
         $data = [
-            'method' => 'host.get',
+            'method' => 'user.get',
             'params' => [
-                'filter' => $hostNames,
+                'output' => 'extend',
             ],
         ];
         return $this->call(postData: $data)['result'];
     }
+    // </editor-fold desc="Region: PEOPLE">
 
 }
