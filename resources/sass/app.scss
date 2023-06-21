@@ -70,6 +70,10 @@ h2 {
   &.btn-icon {
     @apply py-0 px-0 text-xl text-blue-400 hover:text-blue-500 dark:hover:text-blue-300;
   }
+
+  &.btn-file {
+    @apply py-0 px-0 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-950 file:text-gray-300 hover:file:bg-gray-900 dark:file:bg-gray-50 dark:file:text-gray-700 dark:hover:file:bg-gray-100;
+  }
 }
 
 .inline-link {

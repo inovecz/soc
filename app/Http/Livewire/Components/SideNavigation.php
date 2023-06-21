@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Components;
 
+use Storage;
 use Livewire\Component;
 use Livewire\Redirector;
 use App\Libraries\Grafana;
@@ -13,6 +14,7 @@ class SideNavigation extends Component
 {
     public array $menuItems = [];
     public bool $isExpanded;
+    public ?string $logo = null;
 
     protected $listeners = ['menu-settings-updated' => 'buildMenuItems'];
 
@@ -23,7 +25,7 @@ class SideNavigation extends Component
 
     public function render()
     {
-        return view('livewire.components.side-navigation', ['menuItems' => $this->menuItems]);
+        return view('livewire.components.side-navigation', ['menuItems' => $this->menuItems, 'logo' => $this->logo]);
     }
 
     public function routeTo(string $route, array $params = []): RedirectResponse|Redirector
@@ -33,8 +35,19 @@ class SideNavigation extends Component
 
     public function buildMenuItems(): void
     {
-        $this->menuItems = [];
-        $this->menuItems[] = [];
+        $logoPath = \Setting::get('logo.'.auth()->user()->id);
+        if ($logoPath) {
+            $logo = Storage::get($logoPath, null);
+            $extension = pathinfo($logoPath, PATHINFO_EXTENSION);
+            $base64Logo = base64_encode($logo);
+            $this->logo = 'data:image/'.$extension.';base64,'.$base64Logo;
+        } else {
+            $this->logo = null;
+        }
+
+        if (!$this->logo) {
+            $this->menuItems = [];
+        }
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.dashboards', 1) === 1) {
             $dashboardsSubmenu = [];
             try {

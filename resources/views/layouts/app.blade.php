@@ -40,6 +40,7 @@
       <!-- Page Content -->
 
     </div>
+    @stack('scripts')
     @livewireScripts
   </body>
 </html>

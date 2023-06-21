@@ -8,6 +8,11 @@
               :class="isExpanded ? 'rotate-180' : 'rotate-0'">
         <span class="mdi mdi-chevron-right"></span>
       </button>
+      @if($logo)
+        <div class="flex justify-center">
+        <img src="{{ $logo }}" class="max-h-10 object-contain" alt="logo"/>
+        </div>
+      @endif
     </span>
     @foreach($menuItems as $menuItem)
       @if (empty($menuItem))
