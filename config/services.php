@@ -51,6 +51,7 @@ return [
 
     'grafana' => [
         'host' => env('GRAFANA_HOST', 'localhost').'/api/',
+        'host_no_api' => env('GRAFANA_HOST', 'localhost'),
         'username' => env('GRAFANA_USERNAME', 'Admin'),
         'password' => env('GRAFANA_PASSWORD', 'grafana'),
     ],

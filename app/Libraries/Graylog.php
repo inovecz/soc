@@ -12,6 +12,7 @@ class Graylog extends ServiceAbstract
     /**
      * API documentation:
      * https://go2docs.graylog.org/5-0/setting_up_graylog/rest_api.html
+     * http://192.168.200.253/api/api-browser/global/index.html
      */
 
     // <editor-fold desc="Region: ABSTRACT METHODS">

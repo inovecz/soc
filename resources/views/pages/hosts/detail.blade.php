@@ -7,9 +7,13 @@
     <div class="px-4 sm:px-0">
       <div class="flex items-center justify-between">
         <h3 class="text-base font-semibold leading-7">{{ $host['host'] }} <span class="text-neutral-400 dark:text-neutral-600">(#{{ $host['hostid'] }})</span></h3>
-        <p class="text-sm leading-6 text-neutral-400 dark:text-neutral-600">{{ $host['interfaces'][0]['ip'] . ($host['interfaces'][0]['port'] ? ':' .$host['interfaces'][0]['port'] : '') }}</p>
+        @if($host['interfaces'])
+          <p class="text-sm leading-6 text-neutral-400 dark:text-neutral-600">{{ $host['interfaces'][0]['ip'] . ($host['interfaces'][0]['port'] ? ':' .$host['interfaces'][0]['port'] : '') }}</p>
+        @else
+          <p class="text-sm leading-6 text-neutral-400 dark:text-neutral-600">{{ __('Unknown interface') }}</p>
+        @endif
       </div>
-      <p class="mt-1 text-sm leading-6 text-neutral-400 dark:text-neutral-600">{{ $host['inventory']['os'] }}</p>
+      <p class="mt-1 text-sm leading-6 text-neutral-400 dark:text-neutral-600">{{ $host['inventory']['os'] ?? __('Unknown OS') }}</p>
     </div>
   </div>
 

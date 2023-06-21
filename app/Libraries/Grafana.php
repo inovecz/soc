@@ -75,6 +75,16 @@ class Grafana extends ServiceAbstract
         });
     }
 
+    public function getDashboard(string $dashboardUid): array
+    {
+        foreach ($this->getDashboards() as $dashboard) {
+            if ($dashboard['uid'] === $dashboardUid) {
+                return $dashboard;
+            }
+        }
+        return [];
+    }
+
     public function getPanels(string $dashboardUid): array
     {
         $panels = $this->call('dashboards/uid/'.$dashboardUid, method: HttpMethod::GET);

@@ -4,7 +4,7 @@
   </x-slot>
 
   <!--<editor-fold desc="ALERTS">-->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
     <x-alert type="info" label="Total Alerts">3</x-alert>
     <x-alert type="danger" label="High Alerts">0</x-alert>
     <x-alert type="warning" label="Medium Alerts">1</x-alert>
@@ -13,27 +13,44 @@
   <!--</editor-fold desc="ALERTS">-->
 
   <!--<editor-fold desc="PANELS">-->
-  <h2>{{ __('Panels') }}</h2>
+  {{--<h2>{{ __('Panels') }}</h2>
   <div class="grid grid-cols-2 gap-4 mb-6 mt-2">
     @if(!empty($panels))
       @foreach($panels as $panel)
         <div class="flex flex-col px-4 py-2 min-h-20 text-6xl rounded-lg bg-zinc-200 dark:bg-zinc-800">
-          <div class="text-lg">{{ $panel['title'] }}</div>
+          <div class="text-lg">{{ $panel['title'] ?? __('Untitled') }}</div>
           <div class="grid grid-cols-2 text-sm">
-            <div>Datasource - type:</div>
-            <div>{{ $panel['datasource']['type'] }}</div>
-            <div>Datasource - uid:</div>
-            <div>{{ $panel['datasource']['uid'] }}</div>
+            <div>Id:</div>
+            <div class="text-xs flex items-center">{{ $panel['id'] }}</div>
+            <div>Datasource:</div>
+            <div>Type: {{ $panel['datasource']['type'] }} <br> Uid: {{ $panel['datasource']['uid'] }}</div>
+            <div>gridPos:</div>
+            <div>
+              x: {{ $panel['gridPos']['x'] }}, y: {{ $panel['gridPos']['y'] }},
+              w: {{ $panel['gridPos']['w'] }}, h: {{ $panel['gridPos']['h'] }}
+            </div>
+            <div>Targets:</div>
+            <div>
+              @foreach($panel['targets'] as $target)
+                <div>Type: {{ $target['datasource']['type'] }} <br> Uid: {{ $target['datasource']['uid'] }}</div>
+                <div>refId: {{ $target['refId'] }}</div>
+              @endforeach
+            </div>
+            <div>Type:</div>
+            <div>{{ $panel['type'] }}</div>
+            <div>Embed link:</div>
+            <div>{{ config('services.grafana.host_no_api') }}/d-solo/{{ $dashboard['uid'] }}/{{ $dashboard['slug'] }}?orgId=1&refresh=30s&panelId={{ $panel['id'] }}</div>
           </div>
         </div>
       @endforeach
     @endif
-  </div>
+  </div>--}}
   <!--</editor-fold desc="PANELS">-->
 
   <!--<editor-fold desc="CHARTS">-->
 
-  <div class="grid grid-rows-2 grid-flow-col gap-4 mb-6"
+  <h2>{{ __('Panels') }}</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 mb-6"
        x-data="members()"
        @drop.prevent='onDrop($event)'
        @dragover.prevent='onDragover($event)'>
@@ -43,17 +60,19 @@
            @dragstart='onDragstart(index)'
            @dragend='onDragend()'
            :class="{
-              'opacity-25': draggingIndex === index,
-              'pt-20': droppingIndex == index && draggingIndex > index,
-              'pb-20': droppingIndex == index && draggingIndex < index,
-              'row-span-2': member.size == 2
-           }"
-           class="flex items-center justify-center min-h-20 text-6xl rounded-lg bg-zinc-200 dark:bg-zinc-800 relative cursor-move">
+            'opacity-25': draggingIndex === index,
+            'pt-20': droppingIndex == index && draggingIndex > index,
+            'pb-20': droppingIndex == index && draggingIndex < index,
+            'row-span-2': member.size == 2
+         }"
+           class="flex flex-col items-center justify-center min-h-20 rounded-lg bg-zinc-200 dark:bg-zinc-800 relative cursor-move">
 
-        <p class="font-semibold p-3" x-text="member.name"></p>
+        <div class="font-semibold p-3" x-text="member.title"></div>
+        <embed :src="member.url" class="w-full" frameborder="0"/>
 
         <div class="absolute inset-0 opacity-60 cursor-move z-10"
              @dragenter.prevent="onDragenter(event, index)" @dragleave="onDragleave">
+
         </div>
 
         <div :class="{'h-20 top-0 bg-neutral-300': droppingIndex === index && draggingIndex > index, 'h-20 bottom-0 bg-gray-300': droppingIndex === index && draggingIndex < index}" class="absolute h-0 w-full bg-neutral-300 opacity-50 rounded">
@@ -102,16 +121,17 @@
 
   <script>
       function members() {
-          let savedMembers = localStorage.getItem('dragDropMembers');
-          let initialMembers = [
-              {name: '01', size: 1},
-              {name: '02', size: 1},
-              {name: '03', size: 2},
-              {name: '04', size: 2},
-              {name: '05', size: 2}
-          ];
+          let members = @json($panelMembers);
+          let panelIndexes = localStorage.getItem('panelIndexes_{{$dashboardUid}}');
+          if (panelIndexes) {
+              panelIndexes = JSON.parse(panelIndexes);
+              members.sort((a, b) => {
+                  const indexA = panelIndexes.find(item => item.id === a.id).index;
+                  const indexB = panelIndexes.find(item => item.id === b.id).index;
+                  return indexA - indexB;
+              });
+          }
 
-          let members = savedMembers ? JSON.parse(savedMembers) : initialMembers;
           return {
               draggingIndex: null,
               droppingIndex: null,
@@ -137,7 +157,11 @@
                               ...this.members.slice(this.draggingIndex + 1)
                           ];
                       }
-                      localStorage.setItem('dragDropMembers', JSON.stringify(this.members));
+                      const positions = this.members.map((member, index) => ({
+                          index: index,
+                          id: member.id
+                      }));
+                      localStorage.setItem('panelIndexes_{{ $dashboardUid }}', JSON.stringify(positions));
                   }
               },
               onDragover(event) {

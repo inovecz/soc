@@ -117,7 +117,7 @@ class SideNavigation extends Component
             $this->menuItems[] = [
                 'label' => __('Account Health Check'),
                 'icon' => 'mdi-shield-plus',
-                'route' => '',
+                'route' => 'account-health-check.index',
                 'active' => request()?->pageIs('account-health-check'),
             ];
         }
@@ -136,7 +136,7 @@ class SideNavigation extends Component
             $this->menuItems[] = [
                 'label' => __('Actions'),
                 'icon' => 'mdi-toggle-switch',
-                'route' => '',
+                'route' => 'actions.index',
                 'active' => request()?->pageIs('actions'),
                 'submenu' => [],
             ];
