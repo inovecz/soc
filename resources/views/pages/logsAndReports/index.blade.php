@@ -2,7 +2,7 @@
   <x-slot name="header">
     {{ __('Servers - Graylog test') }}
   </x-slot>
-  <div class="bg-zinc-200 dark:bg-zinc-800 overflow-hidden shadow-sm sm:rounded-lg">
+  <div class="bg-zinc-200 dark:bg-zinc-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
     <div class="p-6 text-gray-900 dark:text-gray-100">
 
       <div class="relative overflow-x-auto">
@@ -45,13 +45,15 @@
                   {{ $cluster['operating_system'] }}
                 </td>
               @endforeach
-
             </tr>
-
           </tbody>
         </table>
       </div>
 
     </div>
   </div>
+
+
+  <livewire:graylog.messages/>
+
 </x-app-layout>

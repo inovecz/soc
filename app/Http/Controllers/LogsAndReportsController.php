@@ -6,12 +6,12 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Graylog;
 
-class GraylogController extends Controller
+class LogsAndReportsController extends Controller
 {
     public function index()
     {
         $graylog = new Graylog();
         $clusters = $graylog->getClusters();
-        return view('pages.graylog', compact('clusters'));
+        return view('pages.logsAndReports.index', compact('clusters'));
     }
 }

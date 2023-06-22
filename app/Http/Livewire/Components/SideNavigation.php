@@ -45,9 +45,7 @@ class SideNavigation extends Component
             $this->logo = null;
         }
 
-        if (!$this->logo) {
-            $this->menuItems = [];
-        }
+        $this->menuItems = [];
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.dashboards', 1) === 1) {
             $dashboardsSubmenu = [];
             try {

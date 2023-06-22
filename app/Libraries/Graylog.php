@@ -26,10 +26,10 @@ class Graylog extends ServiceAbstract
         return $response['session_id'] ?? null;
     }
 
-    public function call(string $route = '', array $getParams = [], HttpMethod $method = HttpMethod::POST, array $postData = []): array
+    public function call(string $route = '', array $getParams = [], HttpMethod $method = HttpMethod::POST, array $postData = [], string $accept = 'application/json'): array
     {
         $http = Http::connectTimeout($this->requestTimeout)
-            ->withHeaders(['X-Requested-By' => 'cli', 'Content-Type' => 'application/json', 'Accept' => 'application/json']);
+            ->withHeaders(['X-Requested-By' => 'cli', 'Content-Type' => 'application/json', 'Accept' => $accept]);
         if (isset($this->accessToken)) {
             $http->withBasicAuth($this->accessToken, 'session');
         }
@@ -40,6 +40,13 @@ class Graylog extends ServiceAbstract
             default => $http->post($url, $postData),
         };
         $response = $http->body();
+        if ($accept === 'text/csv') {
+            try {
+                return csv_to_assoc($response, ',');
+            } catch (\Throwable $th) {
+                return [];
+            }
+        }
         $response = $response ? json_decode($response, true) : [];
         if (array_key_exists('type', $response) && $response['type'] === 'ApiError') {
             $response['soc_log'] = [
@@ -60,4 +67,16 @@ class Graylog extends ServiceAbstract
         return $this->call('cluster', ['pretty' => 'true'], HttpMethod::GET);
     }
 
+    public function getMessages(): array
+    {
+        //return $this->call('/search/universal/relative', ['query' => '*', 'range' => 300, 'limit' => 100], HttpMethod::GET);
+        $postData = [
+            'timerange' => [
+                'type' => 'relative',
+                'range' => 2,
+            ],
+        ];
+
+        return $this->call('views/search/messages', [], HttpMethod::POST, $postData, 'text/csv');
+    }
 }

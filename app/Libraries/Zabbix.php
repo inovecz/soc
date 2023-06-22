@@ -175,4 +175,30 @@ class Zabbix extends ServiceAbstract
     }
     // </editor-fold desc="Region: SETTINGS">
 
+    // <editor-fold desc="Region: ACTIONS">
+    public function getActions()
+    {
+        $data = [
+            'method' => 'action.get',
+            'params' => [
+                'output' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+    // </editor-fold desc="Region: ACTIONS">
+
+    // <editor-fold desc="Region: SCRIPTS">
+    public function getScripts()
+    {
+        $data = [
+            'method' => 'script.get',
+            'params' => [
+                'output' => 'extend',
+                'selectHosts' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+    // </editor-fold desc="Region: SCRIPTS">
 }

@@ -7,11 +7,11 @@ use App\Http\Controllers\AlertController;
 use App\Http\Controllers\ZabbixController;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GraylogController;
 use App\Http\Controllers\OpenVasController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AccountHealthController;
+use App\Http\Controllers\LogsAndReportsController;
 use App\Http\Controllers\ThreatAnalysisController;
 
 /*
@@ -30,14 +30,14 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('dashboards.manage');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboards/manage', [DashboardController::class, 'manage'])->name('dashboards.manage');
     Route::get('/dashboards/{dashboardUid}', [DashboardController::class, 'index'])->name('dashboards.index');
     Route::get('/zabbix', [ZabbixController::class, 'index'])->name('zabbix.index');
-    Route::get('/logs-n-reports', [GraylogController::class, 'index'])->name('logs-n-reports.index');
+    Route::get('/logs-n-reports', [LogsAndReportsController::class, 'index'])->name('logs-n-reports.index');
     Route::get('/openvas', [OpenVasController::class, 'index'])->name('openvas.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
