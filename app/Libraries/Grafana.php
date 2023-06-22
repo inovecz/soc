@@ -13,6 +13,9 @@ class Grafana extends ServiceAbstract
     /**
      * API documentation:
      * https://grafana.com/docs/grafana/latest/developers/http_api/
+     *
+     * Test grafana:
+     * http://192.168.200.212:3000 (admin/Heslo123.)
      */
 
     protected int $accessTokenTTL = 86_400;

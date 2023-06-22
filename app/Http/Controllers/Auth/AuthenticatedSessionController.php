@@ -29,13 +29,33 @@ class AuthenticatedSessionController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        /*if (User::where('username', $username)->exists()) {
-            Auth::attempt(['username' => $username, 'password' => $password]);
-        }
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            $whitelist = json_decode(\Setting::get('ip_whitelist.'.$user->id) ?? '', true) ?? [];
+            if (!empty($whitelist)) {
+                $ip = $request->ip();
+                $longIP = ip2long($request->ip());
+                $isWhitelisted = false;
+                foreach ($whitelist as $whitelistItem) {
+                    $ipStart = ip2long($whitelistItem['ip_start']);
+                    if ($whitelistItem['ip_end'] === null) {
+                        $whitelistItem['ip_end'] = $whitelistItem['ip_start'];
+                    }
+                    $ipEnd = ip2long($whitelistItem['ip_end']);
+                    $rangeMin = min($ipStart, $ipEnd);
+                    $rangeMax = max($ipStart, $ipEnd);
 
-        if (Auth::check()) {
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }*/
+                    if ($longIP >= $rangeMin && $longIP <= $rangeMax) {
+                        $isWhitelisted = true;
+                    }
+                }
+                if (!$isWhitelisted) {
+                    return back()->withErrors([
+                        'ip_whitelist' => __('Your IP address (:IP) does not fulfill whitelist restrictions.', ['IP' => $request->ip()]),
+                    ]);
+                }
+            }
+        }
 
         $zabbix = new Zabbix();
         $response = $zabbix->loginUser($username, $password);

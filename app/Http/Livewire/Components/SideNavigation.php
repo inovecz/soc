@@ -88,7 +88,7 @@ class SideNavigation extends Component
                 'label' => __('Threat Analysis Centre'),
                 'icon' => 'mdi-bug',
                 'route' => 'threat-analysis-centre.index',
-                'active' => request()?->pageIs('threat-analysis-centre/*'),
+                'active' => request()?->pageIs('threat-analysis-centre'),
                 'submenu' => [
                     ['label' => __('OpenVAS'), 'route' => 'openvas.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('openvas.index')],
                 ],

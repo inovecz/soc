@@ -20,7 +20,7 @@
     @include('helpers.screen-size', ['location' => 'bottom-center', 'margin' => 'lg'])
     <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
 
-      <div class="flex">
+      <div class="flex max-w-full">
         <div>
           <livewire:components.side-navigation/>
         </div>
@@ -42,5 +42,6 @@
     </div>
     @stack('scripts')
     @livewireScripts
+    @livewire('livewire-ui-modal')
   </body>
 </html>

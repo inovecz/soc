@@ -12,6 +12,9 @@ class Zabbix extends ServiceAbstract
     /**
      * API documentation:
      * https://www.zabbix.com/documentation/current/en/manual/api
+     *
+     * Test Zabbix:
+     * http://192.168.200.73/ (Admin/Heslo123.)
      */
 
     // <editor-fold desc="Region: ABSTRACT METHODS">

@@ -23,9 +23,11 @@
               <span class="">
                   {{ $host['name'].(!$loop->last ? ', ' : '') }}
                 </span>
-
             @endforeach
           </div>
+        </div>
+        <div class="flex items-center justify-end mt-2">
+          <button class="btn btn-sm btn-primary">{{ __('Execute') }}</button>
         </div>
       </div>
     @endforeach
