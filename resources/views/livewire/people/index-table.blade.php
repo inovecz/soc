@@ -1,15 +1,15 @@
 <x-table label="Users list">
   @slot('head')
     <th class="w-8">ID</th>
-    <th class="w-32">{{ __('Username') }}</th>
+    <th class="w-40">{{ __('Username') }}</th>
     <th class="w-24">{{ __('Name') }}</th>
     <th class="w-32">{{ __('Surname') }}</th>
-    <th class="w-24">{{ __('Autologin') }}</th>
-    <th class="w-24">{{ __('Autologout') }}</th>
+    <th class="w-20">{{ __('Autologin') }}</th>
+    <th class="w-20">{{ __('Autologout') }}</th>
     <th class="w-24">{{ __('Lang') }}</th>
-    <th class="w-24">{{ __('Timezone') }}</th>
-    <th class="w-24">{{ __('Role') }}</th>
-    <th class="w-32">{{ __('SOC') }}</th>
+    <th class="w-28">{{ __('Timezone') }}</th>
+    <th class="w-28">{{ __('Role') }}</th>
+    <th class="w-8">{{ __('SOC') }}</th>
     <th class="w-32 text-right">{{ __('Actions') }}</th>
   @endslot
 

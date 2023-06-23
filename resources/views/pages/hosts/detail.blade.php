@@ -20,18 +20,10 @@
 
   <x-table label="Problems">
     @slot('head')
-      <th scope="col" class="px-2 py-3">
-        {{ __('Time') }}
-      </th>
-      <th scope="col" class="px-2 py-3">
-        {{ __('Severity') }}
-      </th>
-      <th scope="col" class="px-2 py-3">
-        {{ __('Problem') }}
-      </th>
-      <th scope="col" class="px-2 py-3">
-        {{ __('Tags') }}
-      </th>
+      <th class="w-24 lg:w-48">{{ __('Time') }}</th>
+      <th class="w-24">{{ __('Severity') }}</th>
+      <th>{{ __('Problem') }}</th>
+      <th>{{ __('Tags') }}</th>
     @endslot
     @slot('body')
       @forelse($problems as $problem)

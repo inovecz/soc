@@ -5,8 +5,8 @@
     <div class="text-xs">{{ $label }}</div>
     <div class="text-md"><span class="mdi mdi-dots-horizontal text-sky-400"></span></div>
   </div>
-  <div class="table-wrapper">
-    <table class="datatable">
+  <div class="w-full overflow-x-auto">
+    <table class="w-full datatable table-fixed text-left">
       <thead>
         <tr>
           {{ $head }}

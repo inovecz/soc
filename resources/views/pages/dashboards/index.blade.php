@@ -84,15 +84,14 @@
   <!--</editor-fold desc="CHARTS">-->
 
   <!--<editor-fold desc="TABLE">-->
-
   <x-table label="Current problems">
     @slot('head')
-      <th>{{ __('Time') }}</th>
-      <th class="w-64">{{ __('Host') }}</th>
+      <th class="w-12">{{ __('Time') }}</th>
+      <th class="w-96">{{ __('Host') }}</th>
       <th class="w-64">{{ __('Problem - Severity') }}</th>
-      <th>{{ __('Duration') }}</th>
-      <th>{{ __('Update') }}</th>
-      <th>{{ __('Tags') }}</th>
+      <th class="w-24">{{ __('Duration') }}</th>
+      <th class="w-24">{{ __('Update') }}</th>
+      <th class="w-48">{{ __('Tags') }}</th>
     @endslot
 
     @slot('body')

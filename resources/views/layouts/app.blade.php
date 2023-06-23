@@ -16,15 +16,15 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
-  <body class="font-sans antialiased">
+  <body class="font-sans antialiased" x-data="{ isMenuExpanded: localStorage.getItem('isMenuExpanded') === 'true' }" x-on:is-expanded-updated="isMenuExpanded = $event.detail">
     @include('helpers.screen-size', ['location' => 'bottom-center', 'margin' => 'lg'])
     <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
 
       <div class="flex max-w-full">
-        <div>
+        <div x-data class="z-10" :class="{ 'w-10': !isMenuExpanded, 'w-52': isMenuExpanded }">
           <livewire:components.side-navigation/>
         </div>
-        <div class="flex-1">
+        <div class="w-full transition-[padding] duration-300" :class="{ 'pl-10 -ml-10': !isMenuExpanded, 'pl-52 -ml-52': isMenuExpanded }">
           <div class="flex flex-col">
             @include('layouts.navigation')
             <main>

@@ -1,11 +1,19 @@
-<nav x-data="{ isExpanded: $persist(@entangle('isExpanded')) }"
-     x-init="">
+<nav x-data="{ isMenuExpanded: $persist(@entangle('isMenuExpanded')).as('isMenuExpanded')}"
+     x-init="$watch('isMenuExpanded', value => {
+              if (value) {
+                document.body.classList.add('isMenuExpanded');
+
+              } else {
+                document.body.classList.remove('isMenuExpanded');
+              }
+              $dispatch('is-expanded-updated', value)
+             })">
   <aside class="h-screen bg-zinc-200 dark:bg-zinc-800 flex flex-col items-center transition-[width] duration-300 overflow-hidden"
-         :class="isExpanded ? 'w-52' : 'w-10'">
+         :class="isMenuExpanded ? 'w-52' : 'w-10'">
     <span class="w-full text-start py-1 px-2.5 text-2xl">
-      <button @click="isExpanded = !isExpanded"
+      <button @click="isMenuExpanded = !isMenuExpanded; $dispatch('is-expanded-updated', isMenuExpanded)"
               class="transition-transform duration-300"
-              :class="isExpanded ? 'rotate-180' : 'rotate-0'">
+              :class="isMenuExpanded ? 'rotate-180' : 'rotate-0'">
         <span class="mdi mdi-chevron-right"></span>
       </button>
       @if($logo)
@@ -22,7 +30,7 @@
           @php
             $activeClass = '';
             if ($menuItem['active']) {
-                if ($isExpanded) {
+                if ($isMenuExpanded) {
                     $activeClass = 'border-l-8 border-sky-400';
                 } else {
                     $activeClass = 'border-l-0 bg-sky-400';
@@ -43,7 +51,7 @@
 
           <span class="mdi {{ $menuItem['icon'] }} py-1 px-2 text-2xl
               {{ $menuItem['active'] ? 'text-neutral-950 dark:text-neutral-50' : 'text-sky-400' }}"></span>
-              <div class="text-xs pl-2 whitespace-nowrap overflow-hidden" :class="isExpanded ? 'w-full' : 'w-0'">{{ $menuItem['label'] }}</div>
+              <div class="text-xs pl-2 whitespace-nowrap overflow-hidden" :class="isMenuExpanded ? 'w-full' : 'w-0'">{{ $menuItem['label'] }}</div>
               <div class="px-2">
                 @if(!empty($menuItem['submenu']))
                   <span class="mdi mdi-chevron-down"></span>

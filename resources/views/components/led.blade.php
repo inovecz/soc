@@ -9,4 +9,4 @@
   };
 @endphp
 
-<div class="w-3 h-3 rounded-full {{ $bgColor }}"></div>
+<span class="inline-block w-3 h-3 rounded-full {{ $bgColor }}"></span>

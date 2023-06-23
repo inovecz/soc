@@ -103,13 +103,7 @@ h2 {
   @apply visible z-50;
 }
 
-.table-wrapper {
-  @apply overflow-x-auto;
-}
-
 .datatable {
-  @apply w-full text-left table-fixed;
-
   thead {
     @apply bg-zinc-300 dark:bg-zinc-700 text-xs;
     tr {
@@ -128,7 +122,7 @@ h2 {
 
   tbody {
     tr {
-      @apply text-xxs border-b border-neutral-700 dark:border-neutral-500 bg-zinc-200 dark:bg-zinc-800 even:bg-zinc-300 dark:even:bg-zinc-700;
+      @apply text-xs border-b border-neutral-700 dark:border-neutral-500 bg-zinc-200 dark:bg-zinc-800 even:bg-zinc-300 dark:even:bg-zinc-700;
       td {
         @apply px-2 py-1;
         &:first-child {

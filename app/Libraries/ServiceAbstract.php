@@ -36,7 +36,7 @@ abstract class ServiceAbstract implements ServiceInterface
     public function checkServerStatus(): bool
     {
         try {
-            Http::connectTimeout(1)->head($this->host);
+            Http::connectTimeout(2)->head($this->host);
             return true;
         } catch (Exception $e) {
             return false; // abort(503, 'Service '.$this->serviceName.' is not available.');

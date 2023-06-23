@@ -4,18 +4,10 @@
   </x-slot>
   <x-table label="Device list">
     @slot('head')
-      <th scope="col">
-        {{ __('Host ID') }}
-      </th>
-      <th scope="col">
-        {{ __('Host name') }}
-      </th>
-      <th scope="col">
-        {{ __('Problems') }}
-      </th>
-      <th scope="col" class="text-right">
-        {{ __('Action') }}
-      </th>
+      <th class="w-24">{{ __('Host ID') }}</th>
+      <th>{{ __('Host name') }}</th>
+      <th class="w-24">{{ __('Problems') }}</th>
+      <th class="w-32 text-right">{{ __('Action') }}</th>
     @endslot
     @slot('body')
       @foreach($hosts as $host)
@@ -29,7 +21,7 @@
           <td class="whitespace-nowrap">
             {{ $host['host'] }}
           </td>
-          <td class="whitespace-nowrap">
+          <td class="whitespace-nowrap overflow-visible">
             @foreach($host['problems'] as $severity => $count)
               <span class="px-1.5 py-0.5 my-0.5 inline-block rounded {{ \App\Enums\ProblemSeverity::tryFrom($severity)->bgColor() }} font-medium mr-1"
                     data-tippy-content="{{ \App\Enums\ProblemSeverity::tryFrom($severity)->toString() }}">

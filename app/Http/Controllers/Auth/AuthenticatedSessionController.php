@@ -33,20 +33,17 @@ class AuthenticatedSessionController extends Controller
         if ($user) {
             $whitelist = json_decode(\Setting::get('ip_whitelist.'.$user->id) ?? '', true) ?? [];
             if (!empty($whitelist)) {
-                $ip = $request->ip();
                 $longIP = ip2long($request->ip());
                 $isWhitelisted = false;
                 foreach ($whitelist as $whitelistItem) {
                     $ipStart = ip2long($whitelistItem['ip_start']);
-                    if ($whitelistItem['ip_end'] === null) {
-                        $whitelistItem['ip_end'] = $whitelistItem['ip_start'];
-                    }
-                    $ipEnd = ip2long($whitelistItem['ip_end']);
+                    $ipEnd = ip2long($whitelistItem['ip_end'] ?? $whitelistItem['ip_start']);
                     $rangeMin = min($ipStart, $ipEnd);
                     $rangeMax = max($ipStart, $ipEnd);
 
                     if ($longIP >= $rangeMin && $longIP <= $rangeMax) {
                         $isWhitelisted = true;
+                        break;
                     }
                 }
                 if (!$isWhitelisted) {

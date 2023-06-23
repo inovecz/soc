@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 class SideNavigation extends Component
 {
     public array $menuItems = [];
-    public bool $isExpanded;
+    public bool $isMenuExpanded;
     public ?string $logo = null;
 
     protected $listeners = ['menu-settings-updated' => 'buildMenuItems'];
