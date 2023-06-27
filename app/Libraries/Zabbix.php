@@ -203,5 +203,18 @@ class Zabbix extends ServiceAbstract
         ];
         return $this->call(postData: $data)['result'];
     }
+
+    public function executeScript(int $scriptId, int $hostId): array
+    {
+        $data = [
+            'method' => 'script.execute',
+            'params' => [
+                'scriptid' => $scriptId,
+                'hostid' => $hostId,
+            ],
+            'id' => '1',
+        ];
+        return $this->call(postData: $data);
+    }
     // </editor-fold desc="Region: SCRIPTS">
 }

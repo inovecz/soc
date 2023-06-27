@@ -15,6 +15,7 @@
     @livewireStyles
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @stack('styles')
   </head>
   <body class="font-sans antialiased" x-data="{ isMenuExpanded: localStorage.getItem('isMenuExpanded') === 'true' }" x-on:is-expanded-updated="isMenuExpanded = $event.detail">
     @include('helpers.screen-size', ['location' => 'bottom-center', 'margin' => 'lg'])
@@ -40,8 +41,8 @@
       <!-- Page Content -->
 
     </div>
-    @stack('scripts')
     @livewireScripts
     @livewire('livewire-ui-modal')
+    @stack('scripts')
   </body>
 </html>

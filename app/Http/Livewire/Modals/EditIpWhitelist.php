@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\People\Modals;
+namespace App\Http\Livewire\Modals;
 
 use App\Models\User;
 use LivewireUI\Modal\ModalComponent;
@@ -36,7 +36,7 @@ class EditIpWhitelist extends ModalComponent
 
     public function render()
     {
-        return view('livewire.people.modals.edit-ip-whitelist');
+        return view('livewire.modals.edit-ip-whitelist');
     }
 
     public function updated($propertyName)

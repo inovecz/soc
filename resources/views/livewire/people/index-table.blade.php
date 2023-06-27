@@ -48,7 +48,7 @@
         <td class="text-right">
           @if($localUser)
             <button class="btn btn-icon" data-tippy-content="{{ __('IP Whitelist') }}">
-              <span class="mdi mdi-ip-network" wire:click="$emit('openModal', 'people.modals.edit-ip-whitelist', {{ json_encode(['user' => $localUser->id]) }})"></span>
+              <span class="mdi mdi-ip-network" wire:click="$emit('openModal', 'modals.edit-ip-whitelist', {{ json_encode(['user' => $localUser->id]) }})"></span>
             </button>
           @endif
         </td>
