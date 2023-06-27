@@ -69,7 +69,6 @@ class Graylog extends ServiceAbstract
 
     public function getMessages(): array
     {
-        //return $this->call('/search/universal/relative', ['query' => '*', 'range' => 300, 'limit' => 100], HttpMethod::GET);
         $postData = [
             'timerange' => [
                 'type' => 'relative',
@@ -78,5 +77,25 @@ class Graylog extends ServiceAbstract
         ];
 
         return $this->call('views/search/messages', [], HttpMethod::POST, $postData, 'text/csv');
+    }
+
+    public function getSavedSearchMessages(string $searchId): array
+    {
+        $postData = [
+            'timerange' => [],
+        ];
+
+        return $this->call('views/search/'.$searchId.'/execute', [], HttpMethod::POST, $postData);
+    }
+
+    public function getSavedSearches()
+    {
+        $getParams = [
+            'page' => 1,
+            'per_page' => 9999,
+            'sort' => 'title',
+            'order' => 'asc',
+        ];
+        return $this->call('search/saved', $getParams, HttpMethod::GET);
     }
 }

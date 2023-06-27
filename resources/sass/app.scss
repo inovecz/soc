@@ -87,11 +87,11 @@ h2 {
 
 .input {
   @apply rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-500 focus:ring-1 focus:ring-indigo-200 focus:ring-indigo-700 w-full;
-  .input-search {
+  &.input-search {
     @apply p-2.5;
   }
 
-  .input-select {
+  &.input-select {
     @apply pl-2.5 pr-6;
   }
 }
