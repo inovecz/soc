@@ -19,16 +19,6 @@ class EditIpWhitelist extends ModalComponent
         'description' => 'nullable|string',
     ];
 
-    public static function closeModalOnEscape(): bool
-    {
-        return false;
-    }
-
-    public static function closeModalOnClickAway(): bool
-    {
-        return false;
-    }
-
     public function mount()
     {
         $this->whitelist = json_decode(\Setting::get('ip_whitelist.'.$this->user->id) ?? '', true) ?? [];

@@ -14,10 +14,10 @@
 
   <!--<editor-fold desc="CHARTS">-->
   <h2>{{ __('Panels') }}</h2>
-  <div class="grid-stack my-4">
+  <div class="grid-stack my-2">
     @foreach($panelMembers as $panelMember)
       <div gs-w="3" gs-h="1" class="grid-stack-item">
-        <div class="p-4 w-full h-full">
+        <div class="p-2 w-full h-full">
           <div class="grid-stack-item-content overflow-hidden p-4 w-full h-full rounded-lg bg-zinc-200 dark:bg-zinc-800">
             <div class="font-semibold mb-2">{{ $panelMember['title'] }}</div>
             <embed class="object-contain h-fit w-full" src="{{ $panelMember['url'] }}" frameborder="0"/>

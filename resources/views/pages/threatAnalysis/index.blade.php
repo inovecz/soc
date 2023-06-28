@@ -3,4 +3,5 @@
     {{ __('Threat Analysis Centre') }}
   </x-slot>
 
+  <livewire:account-health-check.list-scripts/>
 </x-app-layout>

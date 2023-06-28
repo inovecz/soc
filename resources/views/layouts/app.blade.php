@@ -42,6 +42,29 @@
 
     </div>
     @livewireScripts
+    <script>
+        window.addEventListener('alert', event => {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            },
+                toastr[event.detail.type](event.detail.message,
+                    event.detail.title ?? '')
+        });
+    </script>
     @livewire('livewire-ui-modal')
     @stack('scripts')
   </body>

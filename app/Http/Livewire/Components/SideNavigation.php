@@ -90,7 +90,6 @@ class SideNavigation extends Component
                 'route' => 'threat-analysis-centre.index',
                 'active' => request()?->pageIs('threat-analysis-centre'),
                 'submenu' => [
-                    ['label' => __('OpenVAS'), 'route' => 'openvas.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('openvas.index')],
                 ],
             ];
         }
