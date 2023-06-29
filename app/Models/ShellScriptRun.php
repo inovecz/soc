@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Enums\ScriptStatus;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ShellScriptRun extends Model
@@ -13,7 +12,7 @@ class ShellScriptRun extends Model
     // <editor-fold desc="Region: STATE DEFINITION">
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $casts = [
-        'status' => ScriptStatus::class,
+        'state' => ScriptStatus::class,
         'started_at' => 'datetime',
         'finished_at' => 'datetime',
     ];
@@ -32,9 +31,9 @@ class ShellScriptRun extends Model
         return $this->script;
     }
 
-    public function getStatus(): ScriptStatus
+    public function getState(): ScriptStatus
     {
-        return $this->status;
+        return $this->state;
     }
 
     public function getStartedAt(): ?Carbon
@@ -49,7 +48,7 @@ class ShellScriptRun extends Model
 
     public function getOutput(): ?string
     {
-        return $this->outpu;
+        return $this->output;
     }
     // </editor-fold desc="Region: GETTERS">
 

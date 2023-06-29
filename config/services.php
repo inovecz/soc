@@ -44,9 +44,10 @@ return [
     ],
 
     'open_vas' => [
-        'host' => env('OPENVAS_HOST', 'localhost').'/api/',
+        'host' => env('OPENVAS_PROTOCOL', 'https://').env('OPENVAS_IP', 'localhost').':'.env('OPENVAS_PORT', '9390').'/api/',
+        'ip' => env('OPENVAS_IP', 'localhost'),
         'username' => env('OPENVAS_USERNAME', 'Admin'),
-        'password' => env('OPENVAS_PASSWORD', 'graylog'),
+        'password' => env('OPENVAS_PASSWORD', 'openvas'),
     ],
 
     'grafana' => [

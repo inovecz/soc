@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Modals;
 use App\Enums\ScriptType;
 use App\Models\ShellScript;
 use Illuminate\Support\Str;
+use App\Models\ShellScriptRun;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
@@ -21,6 +22,10 @@ class EditShellScript extends ModalComponent
     public array $parameters = [];
     public array $values = [];
     public ?string $scriptPreview = null;
+
+    protected $listeners = [
+        'deleteScript',
+    ];
 
     protected $rules = [
         'name' => 'required|string',
@@ -125,5 +130,12 @@ class EditShellScript extends ModalComponent
             array_map(static fn($value) => is_bool($value) && $value === true ? '1' : (is_bool($value) && $value === false ? '0' : $value), array_values($this->values)),
             $this->shellScriptTemplate?->script ?? ''
         );
+    }
+
+    public function deleteScript(int $shellScriptId): void
+    {
+        ShellScriptRun::where('shell_script_id', $shellScriptId)->delete();
+        ShellScript::where('id', $shellScriptId)->delete();
+        $this->closeModalWithEvents(['shell-script-updated']);
     }
 }

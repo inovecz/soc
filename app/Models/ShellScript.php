@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+;
+
+use App\Enums\ScriptStatus;
+use App\Jobs\RunShellScript;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -68,6 +71,16 @@ class ShellScript extends Model
     // </editor-fold desc="Region: ARRAY GETTERS">
 
     // <editor-fold desc="Region: FUNCTIONS">
+    public function run(): void
+    {
+        $shellScriptRun = ShellScriptRun::create([
+            'shell_script_id' => $this->getId(),
+            'script' => $this->getScript(),
+            'state' => ScriptStatus::PENDING,
+            'values' => $this->values,
+        ]);
+        RunShellScript::dispatch($shellScriptRun);
+    }
     // </editor-fold desc="Region: FUNCTIONS">
 
     // <editor-fold desc="Region: SCOPES">

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Enums\ScriptType;
 use App\Models\ShellScript;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\View\View;
 
 class ListScripts extends Component
 {
@@ -15,16 +16,15 @@ class ListScripts extends Component
     protected $listeners = [
         'shell-script-updated' => 'loadScripts',
         'shell-script-template-updated' => 'loadScriptTemplates',
-        'deleteScript',
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $this->loadScripts();
         $this->loadScriptTemplates();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.account-health-check.list-scripts');
     }
@@ -39,9 +39,10 @@ class ListScripts extends Component
         $this->templates = ShellScript::where('type', ScriptType::TEMPLATE)->get();
     }
 
-    public function deleteScript(int $shellScriptId): void
+    public function runScript(int $scriptId): void
     {
-        ShellScript::where('id', $shellScriptId)->delete();
-        $this->loadScripts();
+        $script = ShellScript::find($scriptId);
+        $script->run();
+        $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => __('Script run was successfully dispatched.')]);
     }
 }
