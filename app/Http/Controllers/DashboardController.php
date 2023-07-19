@@ -13,11 +13,14 @@ class DashboardController extends Controller
         $panels = (new Grafana())->getPanels($dashboardUid);
         $panelMembers = [];
         foreach ($panels as $panel) {
+            if ($panel['type'] === 'row') {
+                continue;
+            }
             $panelMembers[] = [
                 'id' => $panel['id'],
                 'name' => $panel['title'] ?? Str::uuid(),
                 'title' => $panel['title'] ?? __('Untitled'),
-                'url' => config('services.grafana.host_no_api').':3000/d-solo/'.$dashboard['uid'].'/'.$dashboard['slug'].'?orgId=1&refresh=30s&panelId='.$panel['id'],
+                'url' => config('services.grafana.host_no_api').'/d-solo/'.$dashboard['uid'].'/'.$dashboard['slug'].'?orgId=1&refresh=30s&panelId='.$panel['id'],
                 'size' => 1,
             ];
         }
