@@ -40,7 +40,6 @@ class AuthenticatedSessionController extends Controller
                     $ipEnd = ip2long($whitelistItem['ip_end'] ?? $whitelistItem['ip_start']);
                     $rangeMin = min($ipStart, $ipEnd);
                     $rangeMax = max($ipStart, $ipEnd);
-
                     if ($longIP >= $rangeMin && $longIP <= $rangeMax) {
                         $isWhitelisted = true;
                         break;

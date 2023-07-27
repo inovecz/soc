@@ -1,6 +1,6 @@
 <div>
   <h2>Scripts</h2>
-  <div class="grid grid-cols-2 gap-4 my-3">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3">
     @foreach($scripts as $script)
       <div class="flex flex-col w-full h-full rounded-lg bg-zinc-200 dark:bg-zinc-800">
         <div class="px-4 py-2 font-semibold border-b border-zinc-300 dark:border-zinc-700">{{ $script->getName() }}</div>
@@ -30,7 +30,7 @@
   </div>
 
   <h2>Templates</h2>
-  <div class="grid grid-cols-2 gap-4 my-3">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3">
     @foreach($templates as $template)
       <div class="flex flex-col w-full h-full rounded-lg bg-zinc-200 dark:bg-zinc-800">
         <div class="px-4 py-2 font-semibold border-b border-zinc-300 dark:border-zinc-700">{{ $template->getName() }}</div>

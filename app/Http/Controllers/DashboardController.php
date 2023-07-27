@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
     public function manage()
     {
-        $dashboards = (new Grafana())->getDashboards();
+        $dashboards = collect((new Grafana())->getDashboards())->groupBy('folderTitle');
         return view('pages.dashboards.manage', compact('dashboards'));
     }
 }

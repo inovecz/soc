@@ -24,10 +24,10 @@
             </x-slot>
 
             <x-slot name="content">
-              <x-dropdown-link :href="route('profile.edit')">
+              <x-dropdown-link :href="route('dashboards.manage')">
                 {{ __('Some link') }}
               </x-dropdown-link>
-              <x-dropdown-link :href="route('profile.edit')">
+              <x-dropdown-link :href="route('dashboards.manage')">
                 {{ __('Other link') }}
               </x-dropdown-link>
             </x-slot>
@@ -49,9 +49,9 @@
             </x-slot>
 
             <x-slot name="content">
-              <x-dropdown-link :href="route('profile.edit')">
+              {{--<x-dropdown-link :href="route('profile.edit')">
                 {{ __('Profile') }}
-              </x-dropdown-link>
+              </x-dropdown-link>--}}
 
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
