@@ -13,9 +13,11 @@
         </tr>
       </thead>
 
+
       <tbody>
-        {{ $body }}
+        {{ $body ?? '' }}
       </tbody>
+      {{ $bodies ?? '' }}
     </table>
   </div>
 </div>

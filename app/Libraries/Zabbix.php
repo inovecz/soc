@@ -94,6 +94,18 @@ class Zabbix extends ServiceAbstract
         ];
         return $this->call(postData: $data)['result'];
     }
+
+    public function discoverHosts()
+    {
+        $data = [
+            'method' => 'dhost.get',
+            'params' => [
+                'output' => 'extend',
+                'selectDServices' => 'extend',
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
     // </editor-fold desc="Region: HOSTS">
 
     // <editor-fold desc="Region: PROBLEMS">

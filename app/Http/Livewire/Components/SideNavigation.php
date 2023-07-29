@@ -89,8 +89,6 @@ class SideNavigation extends Component
                 'icon' => 'mdi-bug',
                 'route' => 'threat-analysis-centre.index',
                 'active' => request()?->pageIs('threat-analysis-centre'),
-                'submenu' => [
-                ],
             ];
         }
         if ((int) \Setting::get('user_menu.'.auth()->user()->id.'.logs_n_reports', 1) === 1) {
@@ -113,8 +111,12 @@ class SideNavigation extends Component
             $this->menuItems[] = [
                 'label' => __('Devices'),
                 'icon' => 'mdi-cellphone-link',
-                'route' => 'hosts.index',
-                'active' => request()?->pageIs('hosts'),
+                'route' => null,
+                'active' => request()?->pageIs('hosts/*'),
+                'submenu' => [
+                    ['label' => __('Hosts'), 'route' => 'hosts.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('hosts')],
+                    ['label' => __('Discovery'), 'route' => 'discovery.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('discovery')],
+                ],
             ];
         }
         $this->menuItems[] = [

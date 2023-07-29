@@ -56296,3 +56296,533 @@ Finished at [2023/07/25 09:23] (in 11 seconds)
 ----------------------------------------------
 
 
+Started at [2023/07/27 09:48]
+Config file is /Users/petrkaterinak/DevOps/Inove/soc/deployment.ini
+
+Deploying my site
+Live mode
+Connecting to server
+
+Local-jobs:
+local: vite build
+-> vite v4.3.9 building for production...
+transforming...
+✓ 123 modules transformed.
+rendering chunks...
+computing gzip size...
+[vite-plugin-static-copy] Copied 3 items.
+public/build/manifest.json                                          2.87 kB │ gzip:  0.46 kB
+public/build/assets/fa-v4compatibility-694a17c3.woff2               4.56 kB
+public/build/assets/fa-v4compatibility-0515a423.ttf                10.17 kB
+public/build/assets/fa-regular-400-8e7e5ea1.woff2                  24.95 kB
+public/build/assets/fa-regular-400-528d022d.ttf                    63.95 kB
+public/build/assets/fa-brands-400-74833209.woff2                  108.02 kB
+public/build/assets/fa-solid-900-7152a693.woff2                   150.12 kB
+public/build/assets/fa-brands-400-20c4a58b.ttf                    187.21 kB
+public/build/assets/fa-solid-900-67a65763.ttf                     394.63 kB
+public/build/assets/materialdesignicons-webfont-c1c004a9.woff2    396.73 kB
+public/build/assets/materialdesignicons-webfont-80bb28b3.woff     576.75 kB
+public/build/assets/materialdesignicons-webfont-a58ecb54.ttf    1,279.99 kB
+public/build/assets/materialdesignicons-webfont-67d24abe.eot    1,280.21 kB
+public/build/assets/app-87bf3c40.css                              484.51 kB │ gzip: 91.55 kB
+public/build/assets/app-e5918ecb.js                               253.87 kB │ gzip: 87.40 kB │ map: 1,231.79 kB
+✓ built in 2.16s
+
+Error: Terminated in phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/CliRunner.php:2
+
+Exception: Terminated in phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/CliRunner.php:2
+Stack trace:
+#0 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/Safe.php(2): Deployment\CliRunner->Deployment\{closure}(2, Array)
+#1 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/SshServer.php(2): Deployment\Safe::__callStatic('copy', Array)
+#2 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/RetryServer.php(2): Deployment\SshServer->readFile('/www/soc/CrownC...', '/private/var/fo...')
+#3 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/Deployer.php(2): Deployment\RetryServer->noRetry('readFile', '/www/soc/CrownC...', '/private/var/fo...')
+#4 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/Deployer.php(2): Deployment\Deployer->loadDeploymentFile()
+#5 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/Deployment/CliRunner.php(2): Deployment\Deployer->deploy()
+#6 phar:///Users/petrkaterinak/DevOps/Inove/soc/deployment.phar/src/deployment.php(2): Deployment\CliRunner->run()
+#7 /Users/petrkaterinak/DevOps/Inove/soc/deployment.phar(2): require('phar:///Users/p...')
+#8 {main}
+Started at [2023/07/27 09:48]
+Config file is /Users/petrkaterinak/DevOps/Inove/soc/deployment.ini
+
+Deploying my site
+Live mode
+Connecting to server
+
+Local-jobs:
+local: vite build
+-> vite v4.3.9 building for production...
+transforming...
+✓ 123 modules transformed.
+rendering chunks...
+computing gzip size...
+public/build/manifest.json                                          2.87 kB │ gzip:  0.46 kB
+public/build/assets/fa-v4compatibility-694a17c3.woff2               4.56 kB
+public/build/assets/fa-v4compatibility-0515a423.ttf                10.17 kB
+public/build/assets/fa-regular-400-8e7e5ea1.woff2                  24.95 kB
+public/build/assets/fa-regular-400-528d022d.ttf                    63.95 kB
+public/build/assets/fa-brands-400-74833209.woff2                  108.02 kB
+public/build/assets/fa-solid-900-7152a693.woff2                   150.12 kB
+public/build/assets/fa-brands-400-20c4a58b.ttf                    187.21 kB
+public/build/assets/fa-solid-900-67a65763.ttf                     394.63 kB
+public/build/assets/materialdesignicons-webfont-c1c004a9.woff2    396.73 kB
+public/build/assets/materialdesignicons-webfont-80bb28b3.woff     576.75 kB
+public/build/assets/materialdesignicons-webfont-a58ecb54.ttf    1,279.99 kB
+public/build/assets/materialdesignicons-webfont-67d24abe.eot    1,280.21 kB
+public/build/assets/app-87bf3c40.css                              484.51 kB │ gzip: 91.55 kB
+public/build/assets/app-e5918ecb.js                               253.87 kB │ gzip: 87.40 kB │ map: 1,231.79 kB
+[vite-plugin-static-copy] Copied 3 items.
+✓ built in 2.21s
+
+Loaded remote .deployment file
+Scanning files in /Users/petrkaterinak/DevOps/Inove/soc
+Ignoring ./deployment.ini               
+Ignoring ./database/.gitignore          
+Ignoring ./.DS_Store                    
+Ignoring ./bootstrap/app.php            
+Ignoring ./bootstrap/cache              
+Ignoring ./deployment.log               
+Ignoring ./node_modules                 
+Ignoring ./storage/debugbar/X70199529d52dfbe1d6abafe9d1060aed.json
+Ignoring ./storage/debugbar/Xf7dbaff81c88cad96877f09cd7e20a41.json
+Ignoring ./storage/debugbar/X59ae43be32fc281e4340268ec89f5ab6.json
+Ignoring ./storage/debugbar/Xb7d31b6f1ef70a51f0bf8d390947c634.json
+Ignoring ./storage/debugbar/X66e65c40814bcafd1c215516b0bc2c0c.json
+Ignoring ./storage/debugbar/X605ca3aada15e69214138cf49404564c.json
+Ignoring ./storage/debugbar/X5a8ee10410171b2623cf730d86272dbb.json
+Ignoring ./storage/debugbar/X5c4698495f4fc31b33897ad06da30c47.json
+Ignoring ./storage/debugbar/X0ea16616897c29589f818c1756b5d0b4.json
+Ignoring ./storage/debugbar/Xe0ae540e4dff0bd7b46da478192012a0.json
+Ignoring ./storage/debugbar/X2accb988cef6bdf9d4639d2af515ac1e.json
+Ignoring ./storage/debugbar/X4f04c880c01a0aef751ae3198cc429be.json
+Ignoring ./storage/debugbar/X89e663b3659fa5c9b9f835c09532e961.json
+Ignoring ./storage/debugbar/X8ff6e5119e5bd961d19831798dda2ce9.json
+Ignoring ./storage/debugbar/Xb4c57bb33935ad49bfd129a21f522559.json
+Ignoring ./storage/debugbar/Xf47ca2a3b22917e2250fb93838891d2d.json
+Ignoring ./storage/debugbar/X056f160105160b5d7b80e52648da8ee8.json
+Ignoring ./storage/debugbar/X6cb3a53c4339641b754c4a9e6f943d68.json
+Ignoring ./storage/debugbar/X112b9a8afa7fdb55238a924c62a5e793.json
+Ignoring ./storage/debugbar/X226e599177f7210334b77a6eae7a5ddd.json
+Ignoring ./storage/debugbar/X8a60e9651ed171ef9a23db594e43d037.json
+Ignoring ./storage/debugbar/Xf162b95f4ab6c0c852c9a2d3d2b2c383.json
+Ignoring ./storage/debugbar/X50c24101acbe757919b9d048d850499b.json
+Ignoring ./storage/debugbar/X63e0ecb8fbdebc9b45de888a9a962c5c.json
+Ignoring ./storage/debugbar/X5f0b9cb904dbf6047702ae7117f0e716.json
+Ignoring ./storage/debugbar/X0f63b87abeb263c03bcb17a7557324dc.json
+Ignoring ./storage/debugbar/X22ea51f0eeac92f60bf55a64321f2a0b.json
+Ignoring ./storage/debugbar/X5a941325e03f0ae6110f37db9ac18b75.json
+Ignoring ./storage/debugbar/Xb3928809265da23921925134bbb431f8.json
+Ignoring ./storage/debugbar/X5c49cf5ee0e400e6e42cb1c9b2f22ee2.json
+Ignoring ./storage/debugbar/X684ed2a7a1593103492817ca9df59c04.json
+Ignoring ./storage/debugbar/X52fc4d8534fc86d4a6c64681c34c7831.json
+Ignoring ./storage/debugbar/X08db088cb93149affcf5c9e089366e56.json
+Ignoring ./storage/debugbar/Xc0dbb6eed536520cb0d0688ebd15f05b.json
+Ignoring ./storage/debugbar/Xa57ee29da65e909b073f2c80c7cb73c7.json
+Ignoring ./storage/debugbar/X104be8f99e38b147aed5193d7dabcc8a.json
+Ignoring ./storage/debugbar/Xc9fdb6d0fb21c905dff8351505040a5f.json
+Ignoring ./storage/debugbar/X6d033029041a484d995950c9582b2edb.json
+Ignoring ./storage/debugbar/X0f99775ccfe883ddeed136dd1dfcaf60.json
+Ignoring ./storage/debugbar/X70141c0545badb18e7df4dfc86291ab5.json
+Ignoring ./storage/debugbar/X2da9f3dfb952e24834f4ca99425e8973.json
+Ignoring ./storage/debugbar/Xb03792e40c8100e04b91c4efb49a2210.json
+Ignoring ./storage/debugbar/X56e7cfdb1573af60ec751a705d877a7e.json
+Ignoring ./storage/debugbar/Xdd7408947f4bbeb6db876fddbab15af4.json
+Ignoring ./storage/debugbar/X415318717c1fee947e3a36a6d1952c03.json
+Ignoring ./storage/debugbar/X7650901f0743e6f98de862e8978f9561.json
+Ignoring ./storage/debugbar/X3d1485d6f0d07177515ef7e2a5e5e23f.json
+Ignoring ./storage/debugbar/X6e7d0393daceff49272b7a5c3244087a.json
+Ignoring ./storage/debugbar/X781b7051cc72f40d77b8e4301dd23d6e.json
+Ignoring ./storage/debugbar/X3d989c2530003191b3e67eb5514b3cd0.json
+Ignoring ./storage/debugbar/Xf2f0e96a31617a2dbc8f3d40f2a3d348.json
+Ignoring ./storage/debugbar/Xd91ecf85630aca686fb8d6b14d1b6056.json
+Ignoring ./storage/debugbar/Xf8a99b5e9656f8e70507334547f4f11c.json
+Ignoring ./storage/debugbar/Xa2a3e957da7976944d41e9b03f20d88b.json
+Ignoring ./storage/debugbar/Xa9fd55725483d3cbd8c44ab0986771d2.json
+Ignoring ./storage/debugbar/Xb5b09e5bc0bec477fa7be2e1634590dc.json
+Ignoring ./storage/debugbar/Xfb7de86688a1889e0156a403f4fb5af0.json
+Ignoring ./storage/debugbar/X688d66a7a6069466fa9a2be0a3f9dffe.json
+Ignoring ./storage/debugbar/Xf2fa3ac3773b0543e1f79965af9e89fb.json
+Ignoring ./storage/debugbar/Xdff9a1fb800c7f58e8d8bd111e1680cd.json
+Ignoring ./storage/debugbar/X0cb8635eb5dccd47dea6bf689080c372.json
+Ignoring ./storage/debugbar/X452cf52aa35f9b19b4107ebb8527a761.json
+Ignoring ./storage/debugbar/X009283cb917bba85e80dd8929d6325c7.json
+Ignoring ./storage/debugbar/Xece58c861c9498ccd60c2221e55c1cee.json
+Ignoring ./storage/debugbar/X103ac7b63840d1c226aa036cfe93c351.json
+Ignoring ./storage/debugbar/Xb4672bab0ae0d18f10e8814df85e83d2.json
+Ignoring ./storage/debugbar/X958f3a43991873c32b89cdd9fe43012c.json
+Ignoring ./storage/debugbar/X40aeadc3aff1c22185ce70c4bfaa9616.json
+Ignoring ./storage/debugbar/X84cabf51705ef1452732f6fa74cb22de.json
+Ignoring ./storage/debugbar/Xa15341fabae62c44f5adbf617ce6792f.json
+Ignoring ./storage/debugbar/Xcbdb96c5e52c94e5022332ff1d2fab38.json
+Ignoring ./storage/debugbar/X82fc3556654c7273713467755a4efeba.json
+Ignoring ./storage/debugbar/Xa425bcd1b8e810c4774aee19e338800c.json
+Ignoring ./storage/debugbar/X68131085eaa27426105d9e4844aaa4b2.json
+Ignoring ./storage/debugbar/X1e6aba006482e082b56f96d9345cf734.json
+Ignoring ./storage/debugbar/Xce21602bb76e62317e81eaab0d8c48f8.json
+Ignoring ./storage/debugbar/X720b6f149e3d5fda7719036314284c1e.json
+Ignoring ./storage/debugbar/Xab4050c42754621e692804bdcc3c9ae6.json
+Ignoring ./storage/debugbar/X7bd3ad96c0487be037fc80d6d4a83b21.json
+Ignoring ./storage/debugbar/X520fdc509ae34876225569404cee91ff.json
+Ignoring ./storage/debugbar/X45a6bb13b9d3dd7cca80f1170351a562.json
+Ignoring ./storage/debugbar/Xf7b9143f4e209f86593e32b36456e6ae.json
+Ignoring ./storage/debugbar/Xd109ba5d80994bfdcdfdcabf1a558927.json
+Ignoring ./storage/debugbar/X5e44503207c8530a97abab7ddb1f2952.json
+Ignoring ./storage/debugbar/Xcba660ef550cca1b326b34bad07b69e2.json
+Ignoring ./storage/debugbar/Xbeb45143f8fd02420e327e6f7d64b9da.json
+Ignoring ./storage/debugbar/X80ea3418d312cdf4f156a7c9db21051d.json
+Ignoring ./storage/debugbar/X03c6ac2ae45e25de15c4ee4cdb64fec4.json
+Ignoring ./storage/debugbar/X6fb0017709cfb4c5fee929fcf091c207.json
+Ignoring ./storage/debugbar/Xcd1e2a25435460fb35a11400827962be.json
+Ignoring ./storage/debugbar/Xa48fb11de9f49e4077e2ebe8344916bb.json
+Ignoring ./storage/debugbar/X87328d68f9ef6cfc9cfe32620c64e00c.json
+Ignoring ./storage/debugbar/X6a4f9449322bb9fc09a6121d4ec280be.json
+Ignoring ./storage/debugbar/Xb4fc2f9bc9e78e406f9cf77c23170738.json
+Ignoring ./storage/debugbar/Xf391e5386b11e363fccd228e7e207fb9.json
+Ignoring ./storage/debugbar/X89ea6a7b228b70ef8466b7e6f5cc7ca2.json
+Ignoring ./storage/debugbar/Xf5ac59a98b91e4c6a9c0965b2f53bf80.json
+Ignoring ./storage/debugbar/Xba9dd3d031fb2ce11f9b8680529b2c00.json
+Ignoring ./storage/debugbar/X92bbb8033b55fd1927a5fcef17d510a6.json
+Ignoring ./storage/debugbar/X6230b48b3a4e7740fab0ebff7551d5f1.json
+Ignoring ./storage/debugbar/X985acc833bc76c999fcc00b6c5518984.json
+Ignoring ./storage/debugbar/Xcfb6558e71c4f8ba58d0d41c59e3c152.json
+Ignoring ./storage/debugbar/X31aa01e6f42d07d85649661c683aaede.json
+Ignoring ./storage/debugbar/X7eb8c1dba1e33ad6e877fdf4c170dea0.json
+Ignoring ./storage/debugbar/X34ad2c799e7ea8925b186871e16606bd.json
+Ignoring ./storage/debugbar/X941d5f0029592329b726b276351acc5c.json
+Ignoring ./storage/debugbar/X0d73ba9e5162581cc60ba3475f324145.json
+Ignoring ./storage/debugbar/X5eece8ddbc93d3bc9a36af8d75c4d5d1.json
+Ignoring ./storage/debugbar/X2bdae5dbfe56902fabff18fefbbcd281.json
+Ignoring ./storage/debugbar/X3a899330a637cd3a1222ab3f051432d3.json
+Ignoring ./storage/debugbar/X79b000f3cd02b39b77729b8bf85d5037.json
+Ignoring ./storage/debugbar/Xf368de40e9a2c3268fe6b4fc67dc74f0.json
+Ignoring ./storage/debugbar/X254650faad27c77018a85dd1b7df087c.json
+Ignoring ./storage/debugbar/X99e8497ed147b0315ed9c5d2168018e0.json
+Ignoring ./storage/debugbar/X22d703488c2c96457f0c3460cb51c4d2.json
+Ignoring ./storage/debugbar/Xdf55b192f267d90dde448f8974591dd1.json
+Ignoring ./storage/debugbar/X7dc8ac8502f6480e0e745ea07e65b478.json
+Ignoring ./storage/debugbar/Xe2ec2f2ea5f8a9456d0f6699e1fb172e.json
+Ignoring ./storage/debugbar/X0b59d0fcd1e04253e2031c5326e73a4e.json
+Ignoring ./storage/debugbar/Xb15a3091e903fd2ee6097d7f7788541c.json
+Ignoring ./storage/debugbar/X542c196603ca808bfc2de76b4a12839c.json
+Ignoring ./storage/debugbar/Xcc9468bf33f1aad0161e1b4e3736aede.json
+Ignoring ./storage/debugbar/X9453aaa3549c7c0882cc19cfbe32e750.json
+Ignoring ./storage/debugbar/Xbc3904a9785be357723762b30a74666d.json
+Ignoring ./storage/debugbar/Xa2d3dd0dcdbc35f84058f6c22154135b.json
+Ignoring ./storage/debugbar/X217cbf0344f470350255ff20b25ab887.json
+Ignoring ./storage/debugbar/Xd14fd720f254fc6852965eaf57355d8f.json
+Ignoring ./storage/debugbar/Xa75bdf5ac4ef2f6e5d81413e22878499.json
+Ignoring ./storage/debugbar/Xe7541b8ccdfedeb777c9a10598ed1ba3.json
+Ignoring ./storage/debugbar/X41aefebb9f11fb38e1ef169d9b5145d6.json
+Ignoring ./storage/debugbar/X2bd31963a0607c1c3305548eb1f59c22.json
+Ignoring ./storage/debugbar/X00327173ef8b5948be34794c1d84fe05.json
+Ignoring ./storage/debugbar/X60eaf7518831ab1dccc5d4514f1c302f.json
+Ignoring ./storage/debugbar/Xffc420b2c387048e906e47fe5fdb3c7c.json
+Ignoring ./storage/debugbar/Xe244a8d1f63244974c9c3b1843332c18.json
+Ignoring ./storage/debugbar/Xde7a230c03e0443f7d9e87ecf46f3dee.json
+Ignoring ./storage/debugbar/X8b0c6c3a53c26392458a457c946bcf8b.json
+Ignoring ./storage/debugbar/X05fc824e1f85121894c339b71b6f4be0.json
+Ignoring ./storage/debugbar/X4baf347f4d28288f7286e01bec1ee49c.json
+Ignoring ./storage/debugbar/X1678958de0d4cfc21cd8d7e69ec346ac.json
+Ignoring ./storage/debugbar/X94efe65b4faf6b4b5e3d57832a7b77e0.json
+Ignoring ./storage/debugbar/X1c80e06dfb80a6c63f73fc935e835be3.json
+Ignoring ./storage/debugbar/X255be70f30b09b96f7be524133e780f9.json
+Ignoring ./storage/debugbar/X141e4a9b5e3e32913ad1496d281c6a28.json
+Ignoring ./storage/debugbar/Xc520cbc026d45ed821a25e689920291b.json
+Ignoring ./storage/debugbar/X7315959e9b519ebc5d78fe4dc9d59697.json
+Ignoring ./storage/debugbar/X273b665a74a808315faac039a47cd03f.json
+Ignoring ./storage/debugbar/Xbf376de94f4cf7808160f72ad1e24251.json
+Ignoring ./storage/debugbar/Xeecd8b63e3c1c949024ae86fbb4dd30f.json
+Ignoring ./storage/debugbar/X49675a46d4dfdde2a04fcf8fd8c15c3a.json
+Ignoring ./storage/debugbar/Xdbc8b7f25eba47c75e89ee911340f0cd.json
+Ignoring ./storage/debugbar/X7851521c093be4e2373366a37cdd77fa.json
+Ignoring ./storage/debugbar/X12193d1bbfbfae51265034bbd34ce85c.json
+Ignoring ./storage/debugbar/X69436488c7c42ad5d6f5f6a51faf58ee.json
+Ignoring ./storage/debugbar/Xf0a59c8be5ffc3fb0fc2a8e85c84ed9d.json
+Ignoring ./storage/debugbar/Xbe8acfa8f5bc35c46cd29e50805e42ad.json
+Ignoring ./storage/debugbar/X54f78e6bf3bd77e0c15f647d74add6a2.json
+Ignoring ./storage/debugbar/Xec91b6d13914e0791005a4adde79c61a.json
+Ignoring ./storage/debugbar/X252a018e91f5a5d9a3b0b26120c3ff81.json
+Ignoring ./storage/debugbar/X1a1ff9967c16f58281ed6f0a140313d8.json
+Ignoring ./storage/debugbar/X61f70b3cc25096f8cb3e98388af95db6.json
+Ignoring ./storage/debugbar/Xb6f4e4baa6fc6c4a9d4262d4950f8374.json
+Ignoring ./storage/debugbar/Xa3e9a73f4cdbe5469bdecf6c1dec5cdf.json
+Ignoring ./storage/debugbar/Xcdabde2ab4ea330e77bf6df771aa78ea.json
+Ignoring ./storage/debugbar/X1f6782ec25275f0cc9459b3dc8f71be6.json
+Ignoring ./storage/debugbar/Xa4e241d15bfb20308ba49073a06b9a3b.json
+Ignoring ./storage/debugbar/X085da1966f35ad9276af6586ce6f15be.json
+Ignoring ./storage/debugbar/Xd1c632683765756a1322016833af175d.json
+Ignoring ./storage/debugbar/X44e9b49c2ae0686b5b5e07358813cb55.json
+Ignoring ./storage/debugbar/Xac01ab80e98812dcf3b11310b9fb433c.json
+Ignoring ./storage/debugbar/X9ed13ead57fc19b7e2ea7bb107277b1c.json
+Ignoring ./storage/debugbar/X9f2796347827a1b957a5de3b24464db4.json
+Ignoring ./storage/debugbar/X0928f2c39fd8c9aaf4b8ea770f35c4e8.json
+Ignoring ./storage/debugbar/X501f694484a4ecd590be7a455833790f.json
+Ignoring ./storage/debugbar/Xb951e5cfc7281d96d4c27213c8ef92f1.json
+Ignoring ./storage/debugbar/X2d88abf5bee337519bfcff8c0ad8065c.json
+Ignoring ./storage/debugbar/X666716e2044167b29e9e26144193487d.json
+Ignoring ./storage/debugbar/Xa627d4a8fbca386afc28ef2067404249.json
+Ignoring ./storage/debugbar/Xd32f1faecad9f10479e0a08812a476e6.json
+Ignoring ./storage/debugbar/X2ad463a3e2f4caf30f9266f658afcdbb.json
+Ignoring ./storage/debugbar/X6a67e5fafa7055af1152c0ec10dc642f.json
+Ignoring ./storage/debugbar/X0efb3284a6b68debf1a8bae0fd943767.json
+Ignoring ./storage/debugbar/Xaee3b6b39590d875f135a5a4d722ebba.json
+Ignoring ./storage/debugbar/Xa526f75320aee8500866fb1bcb4ee00b.json
+Ignoring ./storage/debugbar/Xa5b4031d0364eb634fc049eb3e4e8285.json
+Ignoring ./storage/debugbar/X2800e3bab71eca599a28d3798516ea0e.json
+Ignoring ./storage/debugbar/X6f6466b5e9dc8aac3c75db7b090dbe71.json
+Ignoring ./storage/debugbar/X30fbaad3d416c5274d54453f69d33041.json
+Ignoring ./storage/debugbar/X32db2316e3fc4e74bee732e9cb9e23af.json
+Ignoring ./storage/debugbar/Xfa2435ca101fab67bb111c6e773b3490.json
+Ignoring ./storage/debugbar/X0bed6ca6cd8fc9c9b177f153f11b75a6.json
+Ignoring ./storage/debugbar/X67c72a57c7bc3c76811171bcfab36b20.json
+Ignoring ./storage/debugbar/X5f2cd2cdfc25a063920a07a6abf18201.json
+Ignoring ./storage/debugbar/.gitignore  
+Ignoring ./storage/debugbar/X453b159749fb9e3c27a4bfb414b2c121.json
+Ignoring ./storage/debugbar/X2a24526e09871d7bf244bd577a560607.json
+Ignoring ./storage/debugbar/Xd8bf691eb09562428a32844044761b74.json
+Ignoring ./storage/debugbar/Xc8ff94af205bd12a4998aeaeba74e15b.json
+Ignoring ./storage/debugbar/Xbd7bddcf3cef9a9cfd927ef8a9c96c97.json
+Ignoring ./storage/debugbar/X9b84b6cf5ba87388a0f547343b1c1333.json
+Ignoring ./storage/debugbar/Xeeda8c2719030716379a68eaacf0f5db.json
+Ignoring ./storage/debugbar/X5a2abd847a632b3e2f008d2e0f831efc.json
+Ignoring ./storage/debugbar/X3fc9a4f1a152621af5250749b6b28b75.json
+Ignoring ./storage/debugbar/Xe1ae3a787ece63eb6d2f952a1fc48d02.json
+Ignoring ./storage/debugbar/X18167875056a92c96113b67ac1b5b303.json
+Ignoring ./storage/debugbar/Xcc5ed490d64bdc9fd41c59a53b3b767e.json
+Ignoring ./storage/debugbar/X1f30c11c437cf95a260c2fd9b7912a65.json
+Ignoring ./storage/debugbar/X41dfabec41511e79db2eed2d2b487c5c.json
+Ignoring ./storage/debugbar/X4649c97408f147a43db01812d593dc6c.json
+Ignoring ./storage/debugbar/Xd90d67e38887b5d4f577a59ca98c9419.json
+Ignoring ./storage/debugbar/Xe2d74d8c72b7976a37b34792aa84cffd.json
+Ignoring ./storage/debugbar/Xeb20b7b518f40ea1db894d986f0fbc6d.json
+Ignoring ./storage/debugbar/X06603ec8788f52a12d389069516edc84.json
+Ignoring ./storage/debugbar/Xd954452e18eadda5df16d9d94af4e2bc.json
+Ignoring ./storage/debugbar/X35bb2a5a78e13cf1c90143a5893ee39c.json
+Ignoring ./storage/debugbar/X548f4f3353ed7295a4247bc2bb37b89f.json
+Ignoring ./storage/debugbar/X86c29c202cec445232af305e1d05b6dd.json
+Ignoring ./storage/debugbar/Xd64be3fff59558e7a3875cf4c1a5ea29.json
+Ignoring ./storage/debugbar/Xacd80a1ab94dbdf1f03495c7288669f9.json
+Ignoring ./storage/debugbar/X9cef5cdeadd89ff514e33a799c6d6741.json
+Ignoring ./storage/debugbar/Xd7b2db9bc22804b0bac28ad8758f6c43.json
+Ignoring ./storage/debugbar/X3df5c7bc668713215c2eea65533f8da1.json
+Ignoring ./storage/debugbar/X337906d730e8a6a00eb64efbc8c3b787.json
+Ignoring ./storage/debugbar/Xca47c6637366875f3c675d95eba72a70.json
+Ignoring ./storage/debugbar/X42052b77eef083f080a01a813e52c669.json
+Ignoring ./storage/debugbar/Xd9a893e6455d1d4e302714b5567d578c.json
+Ignoring ./storage/debugbar/X379e2aa5000c063aadbdb4299e0d4ff3.json
+Ignoring ./storage/debugbar/X2e051c4443355a26a00766d369ffd9e3.json
+Ignoring ./storage/debugbar/X2c957dba6d3871846d2d43f57cf9b748.json
+Ignoring ./storage/debugbar/X7d8be757ea03a221daf43f81de308e1e.json
+Ignoring ./storage/debugbar/Xae87b32d98e52f254e063c4ddef18882.json
+Ignoring ./storage/debugbar/Xba4cdf1906a6ff758bb851f8b9be68a8.json
+Ignoring ./storage/debugbar/X4be2fc24bb018407a109ffa22f521bda.json
+Ignoring ./storage/debugbar/Xe8d6877f9ef00ed8ea1bcd3173f02b57.json
+Ignoring ./storage/debugbar/X43e29df4d4bb1afa5427adb0c93a7511.json
+Ignoring ./storage/debugbar/Xd9521e377e7d5c0265dade5fcf683321.json
+Ignoring ./storage/debugbar/X141c80796a9cdfc8671881e10ded926b.json
+Ignoring ./storage/debugbar/X1e3e379649c29a242530234e6e2b31b1.json
+Ignoring ./storage/debugbar/X96842ea71e36dbbf475e2608c5ed97d9.json
+Ignoring ./storage/debugbar/X2c68e0b24a7226123cb86dc2d8aeb2dd.json
+Ignoring ./storage/debugbar/X9f69684a257c67f601f9dc6cbd0a491d.json
+Ignoring ./storage/debugbar/X913c063fa5cc723a8682bdceb57751fd.json
+Ignoring ./storage/debugbar/X2fa010020c540dc452409383a5f3eec2.json
+Ignoring ./storage/debugbar/X768288979cc5c8e6b410bbbb56fccb79.json
+Ignoring ./storage/debugbar/X2c86b9ad4c82ed798566d68da1fe9120.json
+Ignoring ./storage/debugbar/Xd4e6cbc689f7c27d3940fa9fe5954621.json
+Ignoring ./storage/debugbar/X7c4ce8a662d608b7558550e5ec3643a7.json
+Ignoring ./storage/debugbar/Xa8029800221c514d8bd247790dee6905.json
+Ignoring ./storage/debugbar/X5fb1c0d52112ac4ddc012f39fd3cdbec.json
+Ignoring ./storage/debugbar/X02d1291af36d9fc804c2810209c2f756.json
+Ignoring ./storage/debugbar/X046f8ecb67e92644d2235813ab24ea30.json
+Ignoring ./storage/debugbar/Xb8050ae39f5cb0977d10a5c91e3f9618.json
+Ignoring ./storage/debugbar/Xfec48ad17cbf68afbca3a02d6bcd3258.json
+Ignoring ./storage/debugbar/X83acd9ff80abab87797aea3bc15d5cb4.json
+Ignoring ./storage/debugbar/X1315b08996aafccaeed9a3d2c83280fa.json
+Ignoring ./storage/debugbar/Xac7e96bed14fdd3ed283892ee97996f5.json
+Ignoring ./storage/debugbar/X325ed5ea64f2924bd10491f0298fffc4.json
+Ignoring ./storage/debugbar/X13ae4b477838ef0b01398607735d9b8a.json
+Ignoring ./storage/debugbar/X3bbafd8667d383410ad4ccdf946ca816.json
+Ignoring ./storage/debugbar/Xa2b8c89d7aa6883ed2f6da82dc975a68.json
+Ignoring ./storage/debugbar/Xfe6bf60079c96f7db0fb3a7243ba5dff.json
+Ignoring ./storage/debugbar/Xcc828351527dedf2e755104ef5e09286.json
+Ignoring ./storage/debugbar/X1656e2da413d14a39d8c38aff1762ec5.json
+Ignoring ./storage/debugbar/X3883ee887a8a65951630a1cc4a9c9a9f.json
+Ignoring ./storage/debugbar/Xf7f600a113fd0f8bee385cef507ccacf.json
+Ignoring ./storage/debugbar/X0fd5497c96a80f53cc75214d91c6db52.json
+Ignoring ./storage/debugbar/X5f7461a3b8337b6e5e2709906d2a16d1.json
+Ignoring ./storage/debugbar/Xe5a8d4a33b8c18c3b659c6b66970421f.json
+Ignoring ./storage/debugbar/X378894d785ba1dc49abea8931ccbef23.json
+Ignoring ./storage/debugbar/Xa10d1df893b737a6bd198e2fbed06000.json
+Ignoring ./storage/debugbar/X4a84ca3912dcb5649f214d1783b6cbe4.json
+Ignoring ./storage/debugbar/X6b1904967bebf83c77c6a829e45c1be1.json
+Ignoring ./storage/debugbar/Xf865cd213498baa170775b4d8da72bd8.json
+Ignoring ./storage/debugbar/X5fc5da5a460bbfd39f645d5b49ba7eaf.json
+Ignoring ./storage/debugbar/Xd4a84c002ea12baab8f8b31569bec802.json
+Ignoring ./storage/debugbar/X070929f61fa3a16837e5b65b6ec7da01.json
+Ignoring ./storage/debugbar/X888e45f98fcaa5dcda52f830f0b67817.json
+Ignoring ./storage/debugbar/X5d2a17f6d9936f18a200300100e63722.json
+Ignoring ./storage/debugbar/Xfab91011ce0f35f6b24ac0cb02af478c.json
+Ignoring ./storage/debugbar/X79b89147dda8373a29023b6424a3430e.json
+Ignoring ./storage/debugbar/Xf98bf0a29b27e7581df6b147b5069340.json
+Ignoring ./storage/debugbar/Xc9b21e9be8ff26cbbbc144758dc547f1.json
+Ignoring ./storage/debugbar/X8c9e5baaaf599ab3a8411fd8e59994fc.json
+Ignoring ./storage/debugbar/X3f2fe535d5bf03848e755e43d38f70f5.json
+Ignoring ./storage/debugbar/X3efe8d0133ce71961f24ecd3dff4312d.json
+Ignoring ./storage/debugbar/X5d57434935da1eccd18f05393ffbbec5.json
+Ignoring ./storage/debugbar/Xa74e643faa439da59f78abf9d47941ed.json
+Ignoring ./storage/debugbar/Xb64420b5df58d0c0329268d0f93358d1.json
+Ignoring ./storage/debugbar/X16abad72f7475726f138d1f54e6689da.json
+Ignoring ./storage/debugbar/X77fb9ee3cf05bb5ee841c26a5829d790.json
+Ignoring ./storage/debugbar/X9a025833e03f892e42d624a5a18c5716.json
+Ignoring ./storage/debugbar/X2cf1801ad429c0cf0368f2693a0633b3.json
+Ignoring ./storage/debugbar/X27b6cb26ad3a78ca2d383707afc8bd66.json
+Ignoring ./storage/debugbar/Xe069a9c07f61b67d587e7a0c7001cdc6.json
+Ignoring ./storage/debugbar/X3fcdfa478b2e34eed43e6b2b793cde18.json
+Ignoring ./storage/debugbar/Xdef685e547f85dc9dbdd88ff33b0f4d9.json
+Ignoring ./storage/debugbar/X79b2f685e6b2185384a5e3039a6670ba.json
+Ignoring ./storage/debugbar/Xe80f3c8f322bcca432c5a9b89e2f420e.json
+Ignoring ./storage/debugbar/X4825d26a9dd060e1c55e4cda157d5199.json
+Ignoring ./storage/debugbar/Xd41e95013d7fe4866394653ba2e9ae85.json
+Ignoring ./storage/debugbar/Xf46db0625a0ce5b1eca4a052d7cc5f31.json
+Ignoring ./storage/debugbar/X431fdd5bf734c106877c7ae0471f7788.json
+Ignoring ./storage/debugbar/Xd8d72875dc36669e66d57107f836ae85.json
+Ignoring ./storage/debugbar/Xa0595d05535f5372381cefbfd96f6fca.json
+Ignoring ./storage/debugbar/X31f6e51e85c29ccc33b2cd3b369213cb.json
+Ignoring ./storage/debugbar/X54f041fe79e73ec958dca501174e953f.json
+Ignoring ./storage/debugbar/X0f59538cd459025c45e14a4dd4e35325.json
+Ignoring ./storage/app/public/.gitignore
+Ignoring ./storage/app/.gitignore       
+Ignoring ./storage/framework/cache/.gitignore
+Ignoring ./storage/framework/cache/data/38
+Ignoring ./storage/framework/cache/data/.gitignore
+Ignoring ./storage/framework/testing/.gitignore
+Ignoring ./storage/framework/sessions/.gitignore
+Ignoring ./storage/framework/.gitignore 
+Ignoring ./storage/framework/views/ecc7cd9dcf934a507d3740e3753a970b.php
+Ignoring ./storage/framework/views/8ee7f0db3a7bd8800898af21a02df1ce.php
+Ignoring ./storage/framework/views/d7985348f3abb38b6be354231d2c934c.php
+Ignoring ./storage/framework/views/590f2fa8deb36c0232bad39609cc270e.php
+Ignoring ./storage/framework/views/cf3feb663d99a6e2701b266239874e0b.php
+Ignoring ./storage/framework/views/02a3452cb599d2ec69687573a01a8cee.php
+Ignoring ./storage/framework/views/94755a7d776de2397feff6476be623a0.php
+Ignoring ./storage/framework/views/e4f574ea61e07cbee8993e04b38f8f1c.php
+Ignoring ./storage/framework/views/f5aba65dd8d9314d05351d4feac39ece.php
+Ignoring ./storage/framework/views/3b8e5094b7e55fa8e6ad3926d12ced06.php
+Ignoring ./storage/framework/views/523321d2038d722cf8cbfb8cdd778be1.php
+Ignoring ./storage/framework/views/cfe8419986acde9fe28cf816fb924b1e.php
+Ignoring ./storage/framework/views/54cac99f77ff1acf4f78774d6c9fc16d.php
+Ignoring ./storage/framework/views/c0e69b2268b0f716c52a0f1662170c98.php
+Ignoring ./storage/framework/views/d7144b7be1ab34f0ea4a679598995bd6.php
+Ignoring ./storage/framework/views/a6894ecb921cfd50b2e26890844aa2bf.php
+Ignoring ./storage/framework/views/3ec696afdba4d81ed32ad5001129b73a.php
+Ignoring ./storage/framework/views/5b3d2a73c7e0199e8fc5251d78f80310.php
+Ignoring ./storage/framework/views/442d4765d3bf1a39a4cdd71ef444a853.php
+Ignoring ./storage/framework/views/7d01b90cf2e3a4ddd5d1265fb56c2a75.php
+Ignoring ./storage/framework/views/223a842482a9020ef77d56f0e394f048.php
+Ignoring ./storage/framework/views/a6e8dc079e554176db2f3b01c360f991.php
+Ignoring ./storage/framework/views/6ef51ac8bf0c5a77ba415a8c2a03504e.php
+Ignoring ./storage/framework/views/d9694f806fea2b094a5db26c25c7800f.php
+Ignoring ./storage/framework/views/9a388092e08a456e28314b2386c23b65.php
+Ignoring ./storage/framework/views/4651e9a7e4998624858221144057b6c0.php
+Ignoring ./storage/framework/views/0ce4b4bf8afbbe242faac8591613b32d.php
+Ignoring ./storage/framework/views/c4136f81ae91cfca1b262d2c9fc06a60.php
+Ignoring ./storage/framework/views/286d45631fb5943ed45f385f76474b6a.php
+Ignoring ./storage/framework/views/72ca7c6e5316a54e7fec9c34067f3740.php
+Ignoring ./storage/framework/views/42a7b427f3097bf6cf455ce8f82632f6.php
+Ignoring ./storage/framework/views/02f2f209a5bcb56de27b5d543b850317.php
+Ignoring ./storage/framework/views/f95c56ef9c19ecddb37cce62e43b1651.php
+Ignoring ./storage/framework/views/68e29956f26b0d35e771dbea897f7143.php
+Ignoring ./storage/framework/views/79f163e8b33f0ba2fcee2e1b7b78ed8c.php
+Ignoring ./storage/framework/views/.gitignore
+Ignoring ./storage/framework/views/40761e5562c0bf114c87572e7ed586d9.php
+Ignoring ./storage/framework/views/1183877cf20842410553182eefcf48e1.php
+Ignoring ./storage/framework/views/28b9ceb439ae768b99592f280e90c6e1.php
+Ignoring ./storage/framework/views/f2ff068cbd756ac5e6bfcbaeee0147e7.php
+Ignoring ./storage/framework/views/25818d98ad1e883de5e09a14b4ced37f.php
+Ignoring ./storage/framework/views/81bc92c8ca03830fda38be42793b6d62.php
+Ignoring ./storage/framework/views/48ba18256315e75b88b7d2178a4a3e5e.php
+Ignoring ./storage/framework/views/c6b83f3bfa306df081e4655d9cc6de77.php
+Ignoring ./storage/framework/views/91b2c50608dba41f6cd935ec1f85cf11.php
+Ignoring ./storage/framework/views/e39896a5416410fd3749f56eac4b53e9.php
+Ignoring ./storage/framework/views/ce878c60e66c63d21a5ea072059da4d3.php
+Ignoring ./storage/framework/views/963f47f1d7ba7ee9fb45d0d8f43a89f1.php
+Ignoring ./storage/framework/views/23a6db2fbee848d6c3b89803328b7e69.php
+Ignoring ./storage/framework/views/43a8b32b6db71b8e812469f9a54a64a9.php
+Ignoring ./storage/framework/views/e3a532ddbf866018bf6731575702fa80.php
+Ignoring ./storage/framework/views/3c73329811a9df8c5fd70dd20eb30044.php
+Ignoring ./storage/framework/views/4e0193b86e0ebe74d7fa33f8367b0ec5.php
+Ignoring ./storage/framework/views/f4079f6eae9ab72b6d559d52f3d2756c.php
+Ignoring ./storage/framework/views/467a9bc49d79ee79a13cbe319b35f967.php
+Ignoring ./storage/framework/views/9317cfe4098d00c361b655f1e18b6695.php
+Ignoring ./storage/framework/views/327b4fe038343bc22ca363590560abdd.php
+Ignoring ./storage/framework/views/ffb2151f89c227e9cb2008c900c1cb3b.php
+Ignoring ./storage/framework/views/43b1b2ce26abe3082d1de51cfd8229e9.php
+Ignoring ./storage/framework/views/0187497c83144aaed7db63f1c471e6d2.php
+Ignoring ./storage/logs/laravel.log     
+Ignoring ./storage/logs/.gitignore      
+Ignoring ./.gitignore                   
+Ignoring ./.gitattributes               
+Ignoring ./.git                         
+Ignoring ./vendor/myclabs/deep-copy/.github
+Ignoring ./vendor/hamcrest/hamcrest-php/.gitignore
+Ignoring ./vendor/hamcrest/hamcrest-php/.github
+Ignoring ./vendor/jean85/pretty-package-versions/.github
+Ignoring ./vendor/.DS_Store             
+Ignoring ./vendor/nunomaduro/collision/.temp/.gitkeep
+Ignoring ./vendor/justbetter/laravel-magento-client/.gitignore
+Ignoring ./vendor/justbetter/laravel-magento-client/.github
+Ignoring ./vendor/_laravel_idea/.gitignore
+Ignoring ./vendor/phpdocumentor/reflection-common/.github
+Ignoring ./vendor/pestphp/pest-plugin/.temp/.gitkeep
+Ignoring ./vendor/pestphp/pest/.temp/.gitkeep
+Ignoring ./vendor/akaunting/laravel-setting/.gitignore
+Ignoring ./vendor/akaunting/laravel-setting/.github
+Ignoring ./vendor/akaunting/laravel-setting/.gitattributes
+Ignoring ./vendor/league/oauth1-client/.gitignore
+Ignoring ./vendor/ta-tikoma/phpunit-architecture-test/.gitignore
+Ignoring ./vendor/ta-tikoma/phpunit-architecture-test/.github
+Ignoring ./vendor/spatie/ignition/resources/compiled/.gitignore
+Ignoring ./vendor/psr/event-dispatcher/.gitignore
+Ignoring ./vendor/psr/container/.gitignore
+Ignoring ./vendor/wire-elements/modal/.gitignore
+Ignoring ./vendor/wire-elements/modal/.github
+Ignoring ./deployment.phar              
+Ignoring ./.idea                        
+
+Uploading:
+(1 of 8) /app/Http/Controllers/DashboardController.php
+(2 of 8) /resources/views/livewire/account-health-check/list-scripts.blade.php
+(3 of 8) /resources/views/layouts/navigation.blade.php
+(4 of 8) /resources/views/pages/alerts/index.blade.php
+(5 of 8) /resources/views/pages/dashboards/manage.blade.php
+(6 of 8) /storage/framework/sessions/ougVIzNTsTDgruGLBRB6A11Nad5gmNuoVXJxefTB
+(7 of 8) /routes/web.php
+(8 of 8) /.deployment
+Creating remote file .deployment.running
+
+Renaming:
+(1 of 8) Renaming /app/Http/Controllers/DashboardController.php
+(2 of 8) Renaming /resources/views/livewire/account-health-check/list-scripts.blade.php
+(3 of 8) Renaming /resources/views/layouts/navigation.blade.php
+(4 of 8) Renaming /resources/views/pages/alerts/index.blade.php
+(5 of 8) Renaming /resources/views/pages/dashboards/manage.blade.php
+(6 of 8) Renaming /storage/framework/sessions/ougVIzNTsTDgruGLBRB6A11Nad5gmNuoVXJxefTB
+(7 of 8) Renaming /routes/web.php
+(8 of 8) Renaming /.deployment
+
+Deleting:
+(1 of 2) Deleting /storage/framework/sessions/fDyrSEdrPauBxrzFqyxVcdRmVR0p3uFfD7iL61B6
+(2 of 2) Deleting /storage/framework/sessions/Z6G6zYGjvwEpUAtAyk34CRiOU1I7kZrJxo7cQ27M
+
+Cleaning temp/cache
+
+After-jobs:
+upload: live/.env .env
+
+Deleting remote file .deployment.running
+
+
+
+Finished at [2023/07/27 09:49] (in 38 seconds)
+----------------------------------------------
+
+

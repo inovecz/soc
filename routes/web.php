@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AlertController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ZabbixController;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ProfileController;
@@ -40,8 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs-n-reports', [LogsAndReportsController::class, 'index'])->name('logs-n-reports.index');
     Route::get('/openvas', [OpenVasController::class, 'index'])->name('openvas.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
-    Route::get('/hosts/{hostId}', [HostController::class, 'detail'])->name('hosts.detail');
+    Route::get('/devices/hosts', [DeviceController::class, 'index'])->name('hosts.index');
+    Route::get('/devices/hosts/{hostId}', [DeviceController::class, 'detail'])->name('hosts.detail');
+    Route::get('/devices/discovery', [DeviceController::class, 'discoveryIndex'])->name('discovery.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/alerts', [AlertController::class, 'index'])->name('alerts.index');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');

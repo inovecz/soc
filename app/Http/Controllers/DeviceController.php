@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Zabbix;
 
-class HostController extends Controller
+class DeviceController extends Controller
 {
     public function __construct(protected Zabbix $zabbix = new Zabbix()) { }
 
@@ -22,5 +22,10 @@ class HostController extends Controller
         $host = $this->zabbix->getHost($hostId)[0];
         $problems = $this->zabbix->getProblems($hostId);
         return view('pages.hosts.detail', compact('host', 'problems'));
+    }
+
+    public function discoveryIndex()
+    {
+        return view('pages.hosts.discovery');
     }
 }
