@@ -38,7 +38,7 @@
             }
 
           @endphp
-          <div class="w-full menu-item" x-data="{ open: false }">
+          <div class="w-full menu-item relative" x-data="{ open: false }">
 
             <button class="w-full flex items-center justify-start text-left cursor-pointer
                   {{ $menuItem['active'] ? $activeClass : 'hover:bg-zinc-600' }}"
@@ -59,19 +59,22 @@
               </div>
             </button>
             @if(!empty($menuItem['submenu']))
-              <div x-show="open"
+              <div x-show="open" :class="isMenuExpanded ? 'w-full pl-12' : 'fixed ml-12 -translate-y-10'"
                    x-transition:enter="transition ease-out duration-200"
                    x-transition:enter-start="transform opacity-0 scale-95"
                    x-transition:enter-end="transform opacity-100 scale-100"
                    x-transition:leave="transition ease-in duration-75"
                    x-transition:leave-start="transform opacity-100 scale-100"
                    x-transition:leave-end="transform opacity-0 scale-95"
-                   class="bg-neutral-50 dark:bg-neutral-950 w-full pl-12">
+                   @click.away="!isMenuExpanded ? open = false : null"
+                   class="bg-neutral-50 dark:bg-neutral-950">
                 @foreach($menuItem['submenu'] as $submenu)
                   @if(isset($submenu['route']))
-                    <button class="w-full pl-4 py-2 text-xs flex items-center justify-start text-left border-l-8 cursor-pointer {{ $submenu['active'] ? 'border-sky-400' : 'border-transparent bg-neutral-100 dark:bg-neutral-900' }}"
+                    <button :class="isMenuExpanded ? '' : 'pr-4'"
+                            class="w-full pl-4 py-2 text-xs flex items-center justify-start text-left border-l-8 cursor-pointer {{ $submenu['active'] ? 'border-sky-400' : 'border-transparent bg-neutral-100 dark:bg-neutral-900' }}"
                             wire:click="routeTo('{{ $submenu['route'] }}', {{ isset($submenu['params']) ? json_encode($submenu['params']) : null }})"
-                            x-init="!open ? open = {{ json_encode($submenu['active']) }} && !open : false">
+                            @click.away="!isMenuExpanded ? open = false : null"
+                            x-init="!open && isMenuExpanded ? open = {{ json_encode($submenu['active']) }} && !open : false">
                       {{ $submenu['label'] }}
                     </button>
                   @else
