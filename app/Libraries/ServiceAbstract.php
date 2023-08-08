@@ -20,7 +20,7 @@ abstract class ServiceAbstract implements ServiceInterface
         $this->serviceName = Str::of(static::class)->afterLast('\\');
         $this->host = config('services.'.Str::of($this->serviceName)->snake().'.host');
         if (!$this->checkServerStatus()) {
-            throw new ServiceUnavailableHttpException('Service '.$this->serviceName.' is not available.'); // abort(503, 'Service '.$this->serviceName.' is not available.');
+            throw new ServiceUnavailableHttpException(message: 'Service '.$this->serviceName.' is not available.'); // abort(503, 'Service '.$this->serviceName.' is not available.');
         }
         $this->accessToken = $this->fetchAccessToken();
     }

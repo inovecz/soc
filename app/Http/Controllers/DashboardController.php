@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Libraries\Grafana;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class DashboardController extends Controller
 {
@@ -29,7 +30,11 @@ class DashboardController extends Controller
 
     public function manage()
     {
-        $dashboards = collect((new Grafana())->getDashboards())->groupBy('folderTitle');
+        try {
+            $dashboards = collect((new Grafana())->getDashboards())->groupBy('folderTitle');
+        } catch (ServiceUnavailableHttpException $exception) {
+            $dashboards = collect();
+        }
         return view('pages.dashboards.manage', compact('dashboards'));
     }
 }

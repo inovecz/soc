@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs-n-reports', [LogsAndReportsController::class, 'index'])->name('logs-n-reports.index');
     Route::get('/openvas', [OpenVasController::class, 'index'])->name('openvas.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/devices/hosts', [DeviceController::class, 'index'])->name('hosts.index');
+    Route::get('/devices/hosts', [DeviceController::class, 'index'])->name('devices.index');
     Route::get('/devices/hosts/{hostId}', [DeviceController::class, 'detail'])->name('hosts.detail');
     Route::get('/devices/discovery', [DeviceController::class, 'discoveryIndex'])->name('discovery.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

@@ -31,6 +31,11 @@ class DiscoveryItem extends Model
         return $this->host_id;
     }
 
+    public function getDiscoveryBatchId(): int
+    {
+        return $this->discovery_batch_id;
+    }
+
     public function getRuleId(): int
     {
         return $this->rule_id;

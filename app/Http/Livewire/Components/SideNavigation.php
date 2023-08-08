@@ -112,9 +112,9 @@ class SideNavigation extends Component
                 'label' => __('Devices'),
                 'icon' => 'mdi-cellphone-link',
                 'route' => null,
-                'active' => request()?->pageIs('hosts/*'),
+                'active' => request()?->pageIs('devices/*'),
                 'submenu' => [
-                    ['label' => __('Hosts'), 'route' => 'hosts.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('hosts')],
+                    ['label' => __('Hosts'), 'route' => 'devices.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('hosts')],
                     ['label' => __('Discovery'), 'route' => 'discovery.index', 'active' => Str::of(request()?->route()?->getName())->startsWith('discovery')],
                 ],
             ];

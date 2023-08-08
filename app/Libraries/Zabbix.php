@@ -64,7 +64,9 @@ class Zabbix extends ServiceAbstract
         $data = [
             'method' => 'host.get',
             'params' => [
-                'selectInventory' => ['os_short', 'hardware'],
+                'output' => ['hostid', 'host', 'status', 'name', 'active_available'],
+                'selectInterfaces' => 'extend',
+                'selectItems' => ['name', 'description', 'key_', 'prevvalue', 'lastvalue', 'lastclock', 'value_type', 'status'],
             ],
         ];
         return $this->call(postData: $data)['result'];
@@ -107,6 +109,22 @@ class Zabbix extends ServiceAbstract
         return $this->call(postData: $data)['result'];
     }
     // </editor-fold desc="Region: HOSTS">
+
+    // <editor-fold desc="Region: ITEMS">
+    public function getItems(array|string|int $hostIds): array
+    {
+        $hostIds = is_array($hostIds) ? $hostIds : [$hostIds];
+        $data = [
+            'method' => 'item.get',
+            'params' => [
+                'output' => 'extend',
+                'hostids' => $hostIds,
+                'with_triggers' => true,
+            ],
+        ];
+        return $this->call(postData: $data)['result'];
+    }
+    // </editor-fold desc="Region: ITEMS">
 
     // <editor-fold desc="Region: PROBLEMS">
     public function getProblemsCount(string $hostId): array

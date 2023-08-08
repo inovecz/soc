@@ -36,10 +36,7 @@
           </div>
         </div>
       </div>
-
-
       <!-- Page Content -->
-
     </div>
     @livewireScripts
     <script>

@@ -1,5 +1,13 @@
 <div>
   <div class="flex min-w-full justify-between space-x-4 mb-4">
+    <div class="">
+      <select wire:model="batchId" id="hosts" class="input input-select">
+        <option value="0">{{ __('All') }}</option>
+        @foreach($batches as $batch)
+          <option value="{{ $batch->id }}">#{{ $batch->getId()}} - {{ $batch->getStartedAt()->format('d.m.Y H:i') }}</option>
+        @endforeach
+      </select>
+    </div>
     <div class="flex-1">
       <input wire:model="search" type="text" placeholder="{{ __('Search') }}" class="input input-search input-sm">
     </div>
@@ -14,9 +22,11 @@
       </div>
     </div>
   </div>
+
   <x-table label="Discovered devices">
     @slot('head')
-      <th class="w-40">{{ __('Host ID') }}</th>
+      <th class="w-24">{{ __('Host ID') }}</th>
+      <th class="w-24">{{ __('Batch ID') }}</th>
       <th class="w-24">{{ __('Rule ID') }}</th>
       <th class="w-32">{{ __('Status') }}</th>
       <th class="w-20">{{ __('Last up') }}</th>
@@ -34,10 +44,19 @@
     @endslot
 
     @slot('bodies')
+      @php
+        /** @var \App\Models\DiscoveryItem $device */
+      @endphp
       @foreach($devices as $device)
-        <tbody class="even:bg-zinc-300 dark:even:bg-zinc-700">
+        <tbody class="
+              @if(Carbon\Carbon::parse($device->first_created_at)->eq($device->getCreatedAt())) bg-green-200 dark:bg-green-800 even:bg-green-300 dark:even:bg-green-700
+              @elseif($batchId === 0 && Carbon\Carbon::parse($device->last_created_at)->gt($device->getCreatedAt())) bg-rose-200 dark:bg-rose-800 even:bg-rose-300 dark:even:bg-rose-700
+              @else even:bg-zinc-300 dark:even:bg-zinc-700
+              @endif
+              ">
           <tr class="h-10">
             <td>{{ $device->getHostId() }}</td>
+            <td>{{ $device->getDiscoveryBatchId() }}</td>
             <td>{{ $device->getRuleId() }}</td>
             <td>
               <x-led type="{{ $device->getStatus() ? 'success' : 'danger' }}"></x-led>
@@ -65,7 +84,7 @@
           </tr>
           @foreach($device->getServices() as $service)
             <tr class="h-8">
-              <td class="text-xxs pl-8" colspan="6"></td>
+              <td class="text-xxs pl-8" colspan="7"></td>
               <td class="text-xxs">┗ Service #{{ $service['service_id'] }}</td>
               <td class="text-xxs">{{ $service['value'] ?? 'N/A' }}</td>
               <td class="text-xxs">
@@ -95,4 +114,5 @@
       @endforeach
     @endslot
   </x-table>
+  {{ $devices->links() }}
 </div>
