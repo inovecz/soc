@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Libraries\Zabbix;
 use Illuminate\View\View;
+use LdapRecord\Container;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -28,6 +29,12 @@ class AuthenticatedSessionController extends Controller
     {
         $username = $request->input('username');
         $password = $request->input('password');
+
+        $connection = Container::getConnection('default');
+
+        if ($connection->auth()->attempt($username, $password)) {
+            $a = 1;
+        }
 
         $user = User::where('username', $username)->first();
         if ($user) {
